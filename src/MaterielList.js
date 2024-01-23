@@ -19,11 +19,11 @@ const MaterielList = () => {
           <h2>Liste du matériel :</h2>
           <ul>
             {Materiel.map((mat) => (
-              <li key={mat.IDmat}>
+              <li key={mat.IdMat}>
                 <p>Modèle: {mat.Modele}</p>
                 <p>Puissance: {mat.Puissance} chevaux </p>
-                <p>Mise en suceur le : {mat.MiseService}</p>
-                <p>1ère pipe moteur faite à {mat.VidangeMoteur} heures</p>
+                <p>Mise en service le : {mat.MiseService}</p>
+                <p>1ère vidange moteur faite à {mat.VidangeMoteur} heures</p>
               </li>
             ))}
           </ul>
@@ -32,5 +32,3 @@ const MaterielList = () => {
     };
     
 export default MaterielList;
-    
-

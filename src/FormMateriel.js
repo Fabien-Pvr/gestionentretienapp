@@ -35,7 +35,7 @@ const TracteurForm = () => {
       const newId = await countElementsTracteur() + 1;
 
       const tracteurData = {
-        Idmat: newId,
+        IdMat: newId,
         modele,
         puissance,
         MiseService,
