@@ -26,6 +26,14 @@ top: 14px;
   color: #61dafb;
 }
 
+/* .ContainerInit{
+   display: flex; 
+   justify-content: center;
+  align-items: center; 
+   height: 100vh; 
+   margin: 0; 
+} */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

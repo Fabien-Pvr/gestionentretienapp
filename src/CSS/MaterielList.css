@@ -1,0 +1,29 @@
+.containerAffichageMat{
+    border: 1px solid #1A313F;
+    border-radius: 15px;
+    font-family: Inter;
+    font-size: medium;
+    background-color: rgb(0, 0, 0,50%) ;
+    background-image: url('../image/Massey\ 7490.jpeg');
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir tout le conteneur */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    background-position: center; 
+    opacity: 65%;
+    
+}
+.TextBig{
+color: white;
+font-weight: bold;
+}
+.TextSmall{
+    color: white;
+    font-size: medium;
+}
+
+ul{
+    justify-content: center;
+    text-align: center;
+    margin:0;
+    padding:0 10% 0 10%;
+
+}
