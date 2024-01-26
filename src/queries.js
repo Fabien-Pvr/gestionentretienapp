@@ -35,26 +35,26 @@ const Mat = async (IdMat) => {
     try {
         const matRef = ref(db, 'Materiel');
         const snapshot = await get(matRef);
-
         if (snapshot.exists()) {
             const materiels = snapshot.val();
-            
             // Recherche du mat correspondant à IdMat
             const matKeys = Object.keys(materiels);
             for (const key of matKeys) {
                 const matData = materiels[key];
-                if (matData.IdMat === IdMat) {
-                    console.log('MatData:', matData);
+                console.log('blebla', matData)
+                console.log('testfinaljenaimarre', matData.IdMat)
+                if (matData.IdMat == IdMat) {
+                    console.log('MatDataTest:', matData);
                     return matData;
                 }
             }
         }
 
-        console.log(`Aucun mat trouvé avec l'IdMat : ${IdMat}`);
+        // console.log(`Aucun mat trouvé avec l'IdMat : ${IdMat}`);
         return null;
     } catch (error) {
-        console.error('Erreur lors de la récupération des données :', error.message);
-        return null;
+        // console.error('Erreur lors de la récupération des données :', error.message);
+        // return null;
     }
 };
   
@@ -70,26 +70,24 @@ const ListeBesoinEntretien = async () => {
             const besoinEntretien = besoinEntretienData[besoinEntretienId];
             const IdMat = besoinEntretien.IdMat;
             console.log('testIdMat:', IdMat);
-            // Appeler Mat avec l'IdMat correspondant
-            const matData = await Mat(IdMat);
-            console.log('TestMatData:', matData);
-            // Retourner les données du matériau pour cette itération
+
+            //const matData = await Mat(IdMat);
+            console.log('prout:', besoinEntretien);
+
             return {
                 besoinEntretien: besoinEntretien,
-                matData: matData,
+                IdMat: IdMat,     
             };
         });
 
-        // Attendre la résolution de toutes les promesses
         const allMatData = await Promise.all(matDataPromises);
 
-        // Afficher les données dans la console
-        allMatData.forEach((data) => {
-            console.log('TestBesoinEntretien:', data.besoinEntretien);
-            console.log('MatData:', data.matData);
-        });
+        return allMatData;
     }
-};  
-  
+
+    return [];
+};
+
+
 
 export { ListeBesoinEntretien, Mat };
