@@ -64,7 +64,7 @@ const TracteurForm = () => {
 
       <label>
         Puissance:
-        <input type="text" value={puissance} onChange={(e) => setPuissance(e.target.value)} />
+        <input type="number" value={puissance} onChange={(e) => setPuissance(e.target.value)} />
       </label>
 
       <label>

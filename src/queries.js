@@ -45,7 +45,9 @@ const Mat = async (IdMat) => {
                 console.log('testfinaljenaimarre', matData.IdMat)
                 if (matData.IdMat == IdMat) {
                     console.log('MatDataTest:', matData);
-                    return matData;
+                    const modeleMat = matData.Modele;
+                    console.log('modeleMat',modeleMat);
+                    return modeleMat;
                 }
             }
         }

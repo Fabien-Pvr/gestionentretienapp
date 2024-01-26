@@ -20,13 +20,13 @@ const BesoinEntretien = () => {
           const IdMat = besoinEntretien.IdMat;
           console.log('testultime', IdMat)
           const matData = await Mat(IdMat);
-          console.log('tessssttssss',besoinEntretien)
+          console.log('tessssttssss',matData)
           return {
             besoinEntretien: besoinEntretien,
-            matData: matData,
+            modeleMat: matData,
           };
         }));
-  console.log('newData',newData)
+        console.log('newData',newData)
         setBesoinsEntretien(newData);
       } catch (error) {
         console.error("Erreur lors de la récupération des besoins d'entretien :", error);
@@ -45,7 +45,7 @@ const BesoinEntretien = () => {
           <li key={index}>
             <p>Type d'entretien: {besoin.besoinEntretien.besoinEntretien.TypeEntretien}</p>
             <p>IDmat: {besoin.besoinEntretien.IdMat}</p>
-            <p>Modele du matériel: {besoin.matData && besoin.matData.Modele}</p>
+            <p>Modele du matériel: {besoin.modeleMat}</p>
             <p>NbFiltre: {besoin.besoinEntretien.besoinEntretien.NbFiltre}</p>
             <p>Capacite: {besoin.besoinEntretien.besoinEntretien.Capacite}</p>
             <p>Periodicite: {besoin.besoinEntretien.besoinEntretien.Periodicite}</p>

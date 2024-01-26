@@ -7,6 +7,7 @@ import Footer from './Footer';
 import FormMateriel from './FormMateriel';
 import Home from './Home';
 import BesoinEntretien from './BesoinEntretien';
+import NoticeForm from './FormNotice';
 
 function App() {
   return (
@@ -15,10 +16,11 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <div className='ContainerInit'>
         {/* <MaterielList /> */}
-          <FormMateriel />
+          {/* <FormMateriel /> */}
           {/* <EntretienList /> */}
           {/* <Home/> */}
-          {<BesoinEntretien/>}
+          {/* {<BesoinEntretien/>} */}
+          {<NoticeForm/>}
           </div>
         <Footer/>
       </header>
