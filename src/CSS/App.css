@@ -4,15 +4,14 @@
 
 .App-logo {
   width: 242px;
-height: 138px;
-flex-shrink: 0;
-position: fixed;
-top: 14px;
+  height: 138px;
+  flex-shrink: 0;
+  position: fixed;
+  top: 14px;
 }
 
-
 .App-header {
-  background-color: #FBFFF0;
+  background-color: #fbfff0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
