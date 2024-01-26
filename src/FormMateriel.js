@@ -29,9 +29,16 @@ const TracteurForm = () => {
   const [puissance, setPuissance] = useState("");
   const [MiseService, setMiseService] = useState("");
   const [VidangeMoteur, setVidangeMoteur] = useState("");
+  const [error, setError] = useState("");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    // Vérifications du type de données
+    if (isNaN(Number(puissance)) || isNaN(Number(VidangeMoteur))) {
+      setError("La puissance et le nombre d'heures doivent être des nombres.");
+      return;
+    }
 
     try {
       const newId = (await countElementsTracteur()) + 1;
@@ -52,9 +59,10 @@ const TracteurForm = () => {
       setPuissance("");
       setMiseService("");
       setVidangeMoteur("");
+      setError(""); // Effacer les erreurs si la soumission est réussie
     } catch (error) {
       console.error(
-        "Erreur lors de l enregistrement du tracteur :",
+        "Erreur lors de l'enregistrement du tracteur :",
         error.message
       );
     }
@@ -62,6 +70,8 @@ const TracteurForm = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
       <label>
         Modèle:
         <input

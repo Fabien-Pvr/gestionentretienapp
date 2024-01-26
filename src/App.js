@@ -16,11 +16,10 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <div className="ContainerInit">
           {/* <MaterielList /> */}
-          {/* <FormMateriel /> */}
-          {/* <EntretienList /> */}
-          {/* <Home/> */}
-          {/* {<BesoinEntretien/>} */}
-          {<NoticeForm />}
+          <FormMateriel />
+          <Home />
+          <BesoinEntretien />
+          <NoticeForm />
         </div>
         <Footer />
       </header>
