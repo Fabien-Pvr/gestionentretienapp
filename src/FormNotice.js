@@ -1,30 +1,10 @@
-import React, { useState } from "react";
-import { ref, set, get } from "firebase/database";
+import React, { useState, useEffect } from "react";
+import { ref, set, get, push } from "firebase/database";
 import { db } from "./Firebase";
-
-const countElementsBesoinEntretien = async () => {
-  try {
-    const BesoinEntretienRef = ref(db, "BesoinEntretien");
-    const snapshot = await get(BesoinEntretienRef);
-
-    if (snapshot && snapshot.exists()) {
-      const count = Object.keys(snapshot.val()).length;
-      console.log(`Nombre d'éléments dans la table BesoinEntretien : ${count}`);
-      return count;
-    } else {
-      console.log("La table BesoinEntretien n'existe pas ou est vide.");
-      return 0;
-    }
-  } catch (error) {
-    console.error(
-      "Erreur lors de la récupération du nombre d'éléments :",
-      error.message
-    );
-    return 0;
-  }
-};
+import { RecupererIdMat, GetAllModeles } from "./queries"; // Assurez-vous que la fonction GetAllModeles est disponible dans vos queries
 
 const NoticeForm = () => {
+  const [modeles, setModeles] = useState([]);
   const [modele, setModele] = useState("");
   const [TypeEntretien, setTypeEntretien] = useState("");
   const [Periodicite, setPeriodicite] = useState("");
@@ -32,37 +12,74 @@ const NoticeForm = () => {
   const [TypeHuile, setTypeHuile] = useState("");
   const [NbFiltre, setNbFiltre] = useState("");
   const [RefFiltre1, setRefFiltre1] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchModeles = async () => {
+      try {
+        const modelesList = await GetAllModeles(); // Utilisez votre fonction pour récupérer la liste des modèles
+        setModeles(modelesList);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des modèles :",
+          error.message
+        );
+      }
+    };
+
+    fetchModeles();
+  }, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    // Vérifications du type de données
+    if (
+      isNaN(Number(Periodicite)) ||
+      isNaN(Number(Capacite)) ||
+      isNaN(Number(NbFiltre))
+    ) {
+      setError(
+        "La périodicité de l'entretien, la capacité et le nombre de filtres doivent être des nombres."
+      );
+      return;
+    }
+
     try {
-      const newId = (await countElementsBesoinEntretien()) + 1;
+      const IdMat = await RecupererIdMat(modele);
 
-      const noticeData = {
-        IdBesoinEntretien: newId,
-        TypeEntretien,
-        Periodicite,
-        Capacite,
-        TypeHuile,
-        NbFiltre,
-        RefFiltre1,
-      };
+      if (IdMat) {
+        const besoinEntretienRef = ref(db, "BesoinEntretien");
+        const newNoticeRef = push(besoinEntretienRef);
 
-      const BesoinEntretienRef = ref(db, `BesoinEntretien/Besoin${newId}`);
-      await set(BesoinEntretienRef, noticeData);
+        const noticeData = {
+          IdBesoinEntretien: newNoticeRef.key,
+          IdMat: IdMat,
+          TypeEntretien,
+          Periodicite,
+          Capacite,
+          TypeHuile,
+          NbFiltre,
+          RefFiltre1,
+        };
 
-      console.log("Notice enregistré avec succès dans la base de données.");
-      setModele("");
-      setTypeEntretien("");
-      setPeriodicite("");
-      setCapacite("");
-      setTypeHuile("");
-      setNbFiltre("");
-      setRefFiltre1("");
+        await set(newNoticeRef, noticeData);
+
+        console.log("Notice enregistrée avec succès dans la base de données.");
+        setModele("");
+        setTypeEntretien("");
+        setPeriodicite("");
+        setCapacite("");
+        setTypeHuile("");
+        setNbFiltre("");
+        setRefFiltre1("");
+        setError(""); // Effacer les erreurs si la soumission est réussie
+      } else {
+        setError(`Aucun véhicule trouvé pour le modèle ${modele}.`);
+      }
     } catch (error) {
       console.error(
-        "Erreur lors de l enregistrement de la notice :",
+        "Erreur lors de l'enregistrement de la notice :",
         error.message
       );
     }
@@ -70,13 +87,20 @@ const NoticeForm = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
       <label>
         Modèle:
-        <input
-          type="text"
-          value={modele}
-          onChange={(e) => setModele(e.target.value)}
-        />
+        <select value={modele} onChange={(e) => setModele(e.target.value)}>
+          <option value="" disabled>
+            Sélectionnez un modèle
+          </option>
+          {modeles.map((m) => (
+            <option key={m} value={m}>
+              {m}
+            </option>
+          ))}
+        </select>
       </label>
 
       <label>
@@ -89,7 +113,7 @@ const NoticeForm = () => {
       </label>
 
       <label>
-        Périodicité de l'entretien :
+        Périodicité de l'entretien:
         <input
           type="number"
           value={Periodicite}
@@ -97,7 +121,7 @@ const NoticeForm = () => {
         />
       </label>
       <label>
-        Capacité :
+        Capacité:
         <input
           type="number"
           value={Capacite}
@@ -105,7 +129,7 @@ const NoticeForm = () => {
         />
       </label>
       <label>
-        Type d'huile utilisée :
+        Type d'huile utilisée:
         <input
           type="text"
           value={TypeHuile}
@@ -113,7 +137,7 @@ const NoticeForm = () => {
         />
       </label>
       <label>
-        Nombre de filtre nécessaire :
+        Nombre de filtre nécessaire:
         <input
           type="number"
           value={NbFiltre}
@@ -121,7 +145,7 @@ const NoticeForm = () => {
         />
       </label>
       <label>
-        Référence du premier Filtre :
+        Référence du premier Filtre:
         <input
           type="text"
           value={RefFiltre1}

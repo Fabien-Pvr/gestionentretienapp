@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ListeBesoinEntretien, Mat } from "./queries";
+import { ListeBesoinEntretien, RecupererModeleMat } from "./queries";
 
 const BesoinEntretien = () => {
   const [besoinsEntretien, setBesoinsEntretien] = useState([]);
@@ -8,7 +8,7 @@ const BesoinEntretien = () => {
     const fetchData = async () => {
       try {
         const besoinEntretienData = await ListeBesoinEntretien();
-        console.log("besoinEntretienData", besoinEntretienData);
+        console.log("besoinEntretienData1", besoinEntretienData);
         if (!besoinEntretienData || !Array.isArray(besoinEntretienData)) {
           console.error(
             "ListeBesoinEntretien n'a pas renvoyé de données valides."
@@ -19,10 +19,10 @@ const BesoinEntretien = () => {
         const newData = await Promise.all(
           besoinEntretienData.map(async (besoinEntretien) => {
             console.log("besoinEntretienData", besoinEntretienData);
-            console.log("testAvantultime", besoinEntretien.IdMat);
+            console.log("testAvantultime", besoinEntretien);
             const IdMat = besoinEntretien.IdMat;
             console.log("testultime", IdMat);
-            const matData = await Mat(IdMat);
+            const matData = await RecupererModeleMat(IdMat);
             console.log("tessssttssss", matData);
             return {
               besoinEntretien: besoinEntretien,
@@ -53,7 +53,7 @@ const BesoinEntretien = () => {
               Type d'entretien:{" "}
               {besoin.besoinEntretien.besoinEntretien.TypeEntretien}
             </p>
-            <p>IDmat: {besoin.besoinEntretien.IdMat}</p>
+            {/* <p>IDmat: {besoin.besoinEntretien.IdMat}</p> */}
             <p>Modele du matériel: {besoin.modeleMat}</p>
             <p>NbFiltre: {besoin.besoinEntretien.besoinEntretien.NbFiltre}</p>
             <p>Capacite: {besoin.besoinEntretien.besoinEntretien.Capacite}</p>
