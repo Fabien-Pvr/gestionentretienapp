@@ -21,7 +21,7 @@ function App() {
           {/* <Home /> */}
           {/* <BesoinEntretien /> */}
           {/* <NoticeForm /> */}
-          <FormEntretien />
+          {/* <FormEntretien /> */}
           {/* <GetEntretien /> */}
         </div>
         <Footer />
