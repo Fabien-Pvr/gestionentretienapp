@@ -18,16 +18,18 @@ const MaterielList = () => {
 
   return (
     <div>
-      {/* <h2>Liste du matériel :</h2> */}
-      <ul>
+      <ul className="containerAll">
         {Materiel.map((mat) => (
-          <div className="containerAffichageMat" key={mat.IdMat}>
-            <p className="TextBig">Modèle: {mat.Modele}</p>
-            <p className="TextBig">Puissance: {mat.Puissance} chevaux </p>
-            <p className="TextSmall">Mise en service le : {mat.MiseService}</p>
-            <p className="TextSmall">
-              1ère vidange moteur faite à {mat.VidangeMoteur} heures
-            </p>
+          <div className="ContainerFrame">
+            <div className="containerAffichageMat" key={mat.IdMat}>
+              <div className="TextInfoFrame">
+                <p className="TextBig">{mat.Modele}</p>
+                <p className="TextSmall">{mat.Puissance} chevaux </p>
+              </div>
+              <div>
+                <button className="Button"> Voir plus</button>
+              </div>
+            </div>
           </div>
         ))}
       </ul>

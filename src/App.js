@@ -13,19 +13,21 @@ import GetEntretien from "./Entretien";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className="ContainerInit">
-          {/* <MaterielList /> */}
-          {/* <FormMateriel /> */}
-          {/* <Home /> */}
-          {/* <BesoinEntretien /> */}
-          {/* <NoticeForm /> */}
-          {/* <FormEntretien /> */}
-          {/* <GetEntretien /> */}
+      <header>
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
         </div>
-        <Footer />
       </header>
+      <div className="ContainerInit">
+        {/* <MaterielList /> */}
+        {/* <FormMateriel /> */}
+        <Home />
+        {/* <BesoinEntretien /> */}
+        {/* <NoticeForm /> */}
+        {/* <FormEntretien /> */}
+        {/* <GetEntretien /> */}
+      </div>
+      <Footer />
     </div>
   );
 }

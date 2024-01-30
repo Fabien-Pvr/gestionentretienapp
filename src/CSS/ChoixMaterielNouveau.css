@@ -1,0 +1,30 @@
+.barreChoix {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10px 43px;
+  margin: 10px;
+  align-items: center;
+}
+
+.nomActive {
+  color: #0c282c;
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.nomUnactive {
+  color: #0c282c;
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}

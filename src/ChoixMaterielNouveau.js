@@ -1,3 +1,5 @@
+import "./CSS/ChoixMaterielNouveau.css";
+
 const ChoixMaterielNouveau = () => {
   return (
     <div className="barreChoix">
