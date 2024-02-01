@@ -9,24 +9,18 @@ import BesoinEntretien from "./BesoinEntretien";
 import NoticeForm from "./FormNotice";
 import FormEntretien from "./FormEntretien";
 import GetEntretien from "./Entretien";
+import ImageBackgroundComponent from "./ImageBackgroundComponent";
+import Head from "./Head";
+import ChoixMaterielNouveau from "./ChoixMaterielNouveau";
 
 function App() {
   return (
     <div className="App">
       <header>
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </div>
+        <Head />
       </header>
-      <div className="ContainerInit">
-        {/* <MaterielList /> */}
-        {/* <FormMateriel /> */}
-        <Home />
-        {/* <BesoinEntretien /> */}
-        {/* <NoticeForm /> */}
-        {/* <FormEntretien /> */}
-        {/* <GetEntretien /> */}
-      </div>
+      <ChoixMaterielNouveau />
+      <div className="ContainerInit">{/* <MaterielList /> */}</div>
       <Footer />
     </div>
   );

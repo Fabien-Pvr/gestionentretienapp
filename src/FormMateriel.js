@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { ref, set, get, push } from "firebase/database";
+import { ref as databaseRef, set, push } from "firebase/database";
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  // getDownloadURL,
+} from "firebase/storage";
 import { db } from "./Firebase";
 
-const TracteurForm = () => {
+const TracteurFormIm = () => {
   const [Modele, setModele] = useState("");
   const [Puissance, setPuissance] = useState("");
   const [MiseService, setMiseService] = useState(
     new Date().toISOString().split("T")[0]
-  ); // Utilisation de la date actuelle
+  );
   const [VidangeMoteur, setVidangeMoteur] = useState("");
+  const [ImageFile, setImageFile] = useState(null);
+  const [NomImage, setNomImage] = useState("");
   const [error, setError] = useState("");
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -21,25 +34,43 @@ const TracteurForm = () => {
     }
 
     try {
-      const materielRef = ref(db, "Materiel");
-      const newTracteurRef = push(materielRef); // Utilisation de push pour générer automatiquement la clé
-
+      const materielRef = databaseRef(db, "Materiel");
+      const newTracteurRef = push(materielRef);
+      const NomImage = ImageFile.name;
+      // Vérification si une image est sélectionnée
+      if (ImageFile) {
+        const storage = getStorage();
+        const storageReference = storageRef(
+          storage,
+          `images/${newTracteurRef.key}/${ImageFile.name}`
+        );
+        setNomImage(NomImage);
+        await uploadBytes(storageReference, ImageFile);
+        console.log("Image uploaded successfully. NomImage:", NomImage);
+      }
+      console.log("test 33", NomImage);
       const tracteurData = {
         IdMat: newTracteurRef.key,
         Modele,
         Puissance,
         MiseService,
         VidangeMoteur,
+        NomImage,
       };
-
+      console.log(
+        "Attempting to save tractor data to the database. Data:",
+        tracteurData
+      );
       await set(newTracteurRef, tracteurData);
 
       console.log("Tracteur enregistré avec succès dans la base de données.");
       setModele("");
       setPuissance("");
-      setMiseService(new Date().toISOString().split("T")[0]); // Réinitialiser la date à la date actuelle
+      setMiseService(new Date().toISOString().split("T")[0]);
       setVidangeMoteur("");
-      setError(""); // Effacer les erreurs si la soumission est réussie
+      setImageFile(null);
+      setNomImage("");
+      setError("");
     } catch (error) {
       console.error(
         "Erreur lors de l'enregistrement du tracteur :",
@@ -88,9 +119,22 @@ const TracteurForm = () => {
         />
       </label>
 
+      <label>
+        Image:
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+      </label>
+
+      {NomImage && (
+        <img
+          src={NomImage}
+          alt="Preview"
+          style={{ maxWidth: "100%", marginTop: "10px" }}
+        />
+      )}
+
       <button type="submit">Enregistrer</button>
     </form>
   );
 };
 
-export default TracteurForm;
+export default TracteurFormIm;

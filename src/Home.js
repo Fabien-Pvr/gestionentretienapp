@@ -5,7 +5,9 @@ const Home = () => {
   return (
     <div>
       <ChoixMaterielNouveau />
-      <MiseFormeFrameMat />
+      <div className="ContainerInit">
+        <MiseFormeFrameMat />
+      </div>
     </div>
   );
 };
