@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ref as databaseRef, set, push } from "firebase/database";
+import "./CSS/FormMateriel.css";
 import {
   getStorage,
   ref as storageRef,
@@ -48,7 +49,7 @@ const TracteurFormIm = () => {
         await uploadBytes(storageReference, ImageFile);
         console.log("Image uploaded successfully. NomImage:", NomImage);
       }
-      console.log("test 33", NomImage);
+
       const tracteurData = {
         IdMat: newTracteurRef.key,
         Modele,
@@ -57,10 +58,6 @@ const TracteurFormIm = () => {
         VidangeMoteur,
         NomImage,
       };
-      console.log(
-        "Attempting to save tractor data to the database. Data:",
-        tracteurData
-      );
       await set(newTracteurRef, tracteurData);
 
       console.log("Tracteur enregistré avec succès dans la base de données.");
@@ -83,56 +80,64 @@ const TracteurFormIm = () => {
     <form onSubmit={handleFormSubmit}>
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <label>
-        Modèle:
+      <label className="FormImage">
+        Ajouter une image
         <input
-          type="text"
-          value={Modele}
-          onChange={(e) => setModele(e.target.value)}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
         />
-      </label>
-
-      <label>
-        Puissance:
-        <input
-          type="number"
-          value={Puissance}
-          onChange={(e) => setPuissance(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Date de mise en service:
-        <input
-          type="date"
-          value={MiseService}
-          onChange={(e) => setMiseService(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Nombre d'heures au moment de la première vidange:
-        <input
-          type="number"
-          value={VidangeMoteur}
-          onChange={(e) => setVidangeMoteur(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Image:
-        <input type="file" accept="image/*" onChange={handleFileChange} />
       </label>
 
       {NomImage && (
-        <img
-          src={NomImage}
-          alt="Preview"
-          style={{ maxWidth: "100%", marginTop: "10px" }}
-        />
+        <img className="image-preview" src={NomImage} alt="Preview" />
       )}
 
-      <button type="submit">Enregistrer</button>
+      <div className="FormMat">
+        <label className="LabelForm">
+          {/* Modèle: */}
+          <input
+            type="text"
+            value={Modele}
+            onChange={(e) => setModele(e.target.value)}
+            placeholder=" Modèle du véhicule : "
+            required
+          />
+        </label>
+
+        <label className="LabelForm">
+          <input
+            type="number"
+            value={Puissance}
+            onChange={(e) => setPuissance(e.target.value)}
+            placeholder=" Puissance du véhicule : "
+            required
+          />
+        </label>
+
+        <label className="LabelForm">
+          <input
+            type="date"
+            value={MiseService}
+            onChange={(e) => setMiseService(e.target.value)}
+            required
+          />
+        </label>
+
+        <label className="LabelForm">
+          <input
+            type="number"
+            value={VidangeMoteur}
+            onChange={(e) => setVidangeMoteur(e.target.value)}
+            placeholder=" Nombre d'heures lors de la première vidange : "
+            required
+          />
+        </label>
+      </div>
+      <div className="PositionEnregistrer">
+        <button type="submit">Enregistrer</button>
+      </div>
     </form>
   );
 };

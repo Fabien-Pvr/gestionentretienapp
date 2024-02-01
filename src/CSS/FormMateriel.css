@@ -1,0 +1,80 @@
+.FormMat {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding-right: 20px;
+  align-items: flex-start;
+}
+
+.FormImage {
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 2px solid #577d5f;
+  background-color: #fbfff0;
+  color: #577D5F;
+  font-size: 16px;
+  margin: 10px 15%;
+  cursor: pointer;
+}
+
+.FormImage::before {
+  content: "+ ";
+  color: #577D5F;
+  margin-right: 10px;
+}
+
+/* Style pour l'image de prévisualisation */
+.image-preview {
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+input[type="file" i] {
+  background-color: #fbfff0;
+}
+
+input[type="text" i],
+input[type="number" i],
+input[type="date" i] {
+  background-color: #fbfff0;
+  border: none;
+  width: 100%;
+  height: 25px;
+}
+
+.LabelForm {
+  border-bottom: black 1px solid;
+  width: 100%;
+  margin-right: 20px;
+  margin: 20px 0px;
+  /* padding: ; */
+}
+
+input::placeholder {
+  font-family: Inter;
+  font-style: normal;
+  font-size: 14px;
+  color: black;
+}
+.PositionEnregistrer {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center;
+}
+button {
+  background-color: #577d5f;
+  border-radius: 5px;
+  display: flex;
+  padding: 7px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+  font-family: Inter;
+  font-size: larger;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.15px;
+}

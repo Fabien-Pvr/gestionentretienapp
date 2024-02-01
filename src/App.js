@@ -20,7 +20,10 @@ function App() {
         <Head />
       </header>
       <ChoixMaterielNouveau />
-      <div className="ContainerInit">{/* <MaterielList /> */}</div>
+      <div className="ContainerInit">
+        {/* <MaterielList /> */}
+        <FormMateriel />
+      </div>
       <Footer />
     </div>
   );
