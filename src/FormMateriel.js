@@ -101,7 +101,7 @@ const TracteurFormIm = () => {
             type="text"
             value={Modele}
             onChange={(e) => setModele(e.target.value)}
-            placeholder=" Modèle du véhicule : "
+            placeholder=" Modèle du véhicule  "
             required
           />
         </label>
@@ -111,7 +111,7 @@ const TracteurFormIm = () => {
             type="number"
             value={Puissance}
             onChange={(e) => setPuissance(e.target.value)}
-            placeholder=" Puissance du véhicule : "
+            placeholder=" Puissance du véhicule  "
             required
           />
         </label>
@@ -130,7 +130,7 @@ const TracteurFormIm = () => {
             type="number"
             value={VidangeMoteur}
             onChange={(e) => setVidangeMoteur(e.target.value)}
-            placeholder=" Nombre d'heures lors de la première vidange : "
+            placeholder=" Première vidange moteur faite à  "
             required
           />
         </label>

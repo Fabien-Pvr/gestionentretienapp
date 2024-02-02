@@ -32,7 +32,7 @@ const MaterielList = () => {
             <p className="TextSmall">{mat.Puissance} chevaux </p>
           </div>
           <div>
-            <button className="Button"> Voir plus</button>
+            <button className="Button"> Voir plus </button>
           </div>
         </div>
       </BackgroundImageComponent>

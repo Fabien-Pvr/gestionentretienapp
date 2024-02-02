@@ -21,8 +21,8 @@ function App() {
       </header>
       <ChoixMaterielNouveau />
       <div className="ContainerInit">
-        {/* <MaterielList /> */}
-        <FormMateriel />
+        <MaterielList />
+        {/* <FormMateriel /> */}
       </div>
       <Footer />
     </div>

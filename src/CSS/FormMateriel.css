@@ -1,7 +1,7 @@
 .FormMat {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 30px 30px 20px 30px;
   padding-right: 20px;
   align-items: flex-start;
 }
@@ -10,17 +10,18 @@
   display: flex;
   justify-content: center;
   padding: 10px 20px;
-  border: 2px solid #577d5f;
+  border: 2px solid #577d5fcc;
   background-color: #fbfff0;
-  color: #577D5F;
+  color: #577d5fcc;
   font-size: 16px;
   margin: 10px 15%;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .FormImage::before {
   content: "+ ";
-  color: #577D5F;
+  color: #577d5f;
   margin-right: 10px;
 }
 
@@ -48,14 +49,12 @@ input[type="date" i] {
   width: 100%;
   margin-right: 20px;
   margin: 20px 0px;
-  /* padding: ; */
 }
 
 input::placeholder {
-  font-family: Inter;
-  font-style: normal;
+  font-style: italic;
   font-size: 14px;
-  color: black;
+  color: rgb(126, 126, 126);
 }
 .PositionEnregistrer {
   display: flex;
@@ -63,7 +62,7 @@ input::placeholder {
   align-items: center;
 }
 button {
-  background-color: #577d5f;
+  background-color: #577d5fcc;
   border-radius: 5px;
   display: flex;
   padding: 7px;
@@ -71,10 +70,11 @@ button {
   align-items: center;
   gap: 4px;
   color: #fff;
-  font-family: Inter;
-  font-size: larger;
+  font-size: large;
   font-style: normal;
   font-weight: 700;
   line-height: 24px; /* 150% */
   letter-spacing: 0.15px;
+  border: none;
+  margin-top: 5%;
 }
