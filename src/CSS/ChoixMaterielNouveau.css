@@ -5,6 +5,8 @@
   padding: 10px 43px;
   margin: 10px;
   align-items: center;
+  top: 0;
+  z-index: 100;
 }
 
 .nomActive {
@@ -15,6 +17,7 @@
   font-weight: 800;
   line-height: 24px;
   letter-spacing: 0.15px;
+  text-decoration: none;
 }
 
 .nomUnactive {
@@ -25,4 +28,5 @@
   font-weight: 300;
   line-height: 24px;
   letter-spacing: 0.15px;
+  text-decoration: none;
 }

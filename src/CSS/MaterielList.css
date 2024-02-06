@@ -4,6 +4,8 @@
   align-items: normal;
   justify-content: flex-start;
   gap: 20px;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .containerAffichageMat {

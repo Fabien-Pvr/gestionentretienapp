@@ -1,0 +1,6 @@
+.test1 {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100vh; /* ou une autre hauteur fixe selon votre mise en page */
+  z-index: 1;
+}

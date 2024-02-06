@@ -1,11 +1,18 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import "./CSS/ChoixMaterielNouveau.css";
 
 const ChoixMaterielNouveau = () => {
   return (
     <div className="barreChoix">
-      <div className="nomActive">Matériel</div>
-      <div className="nomUnactive">Nouveau</div>
+      <Link to="/materiel" className="nomActive">
+        Matériel
+      </Link>
+      <Link to="/nouveau" className="nomUnactive">
+        Nouveau
+      </Link>
     </div>
   );
 };
+
 export default ChoixMaterielNouveau;
