@@ -10,9 +10,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header>
+        <header className="App-header">
           <Head />
         </header>
+
         <main className="ContainerInit">
           <Home />
         </main>

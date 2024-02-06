@@ -9,7 +9,7 @@
   width: 242px;
   height: 138px;
   flex-shrink: 0;
-  position: fixed;
+  position: sticky;
   top: 14px;
 }
 .App-header {
@@ -19,7 +19,7 @@
   padding: 10px 0px;
   height: 100px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: sticky;
   top: 0;
   z-index: 100;
