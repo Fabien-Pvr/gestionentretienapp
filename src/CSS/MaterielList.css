@@ -55,10 +55,44 @@
   background-color: white;
   margin-left: -2px;
   color: black;
+  text-decoration: none;
 }
 ul {
   justify-content: center;
   text-align: center;
   margin: 0;
   padding: 0 10% 0 10%;
+}
+
+a {
+  text-decoration: none;
+}
+.TexteDetail {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  text-align: left;
+}
+
+.TexteDetail p {
+  color: #545454;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.15px;
+  margin: 0;
+}
+
+.Titre {
+  color: #577d5f;
+  text-align: center;
+  font-size: x-large;
+  font-style: normal;
+  font-weight: bolder;
+  letter-spacing: 0.15px;
 }
