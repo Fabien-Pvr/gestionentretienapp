@@ -8,7 +8,7 @@ import "./CSS/Home.css";
 
 const Home = () => {
   return (
-    <div>
+    <div >
       <div>
         <ChoixMaterielNouveau /> 
       </div>
