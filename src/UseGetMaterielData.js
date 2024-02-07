@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { onValue, ref, child } from "firebase/database";
+import { onValue, ref} from "firebase/database";
 import { db } from "./Firebase.js";
 
-const MaterielInfo = ({ IdMat }) => {
+function useGetMaterielData(IdMat) {
   const [materielInfo, setMaterielInfo] = useState(null);
+  console.log("testIdMat", IdMat);
 
   useEffect(() => {
-    const materielRef = ref(db, `Materiel/${IdMat}`);
-    console.log("materielRef", materielRef);
+    console.log("IdMat:", IdMat.vehicleId);
+    const materielRef = ref(db, `Materiel/${IdMat.vehicleId}`);
+
     const unsubscribe = onValue(materielRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -17,7 +19,9 @@ const MaterielInfo = ({ IdMat }) => {
     });
 
     return () => unsubscribe();
-  }, );
-};
+  }, [IdMat.vehicleId]);
+  console.log("materielInfo", materielInfo);
+  return { materielInfo };
+}
 
-export default MaterielInfo;
+export default useGetMaterielData;

@@ -24,13 +24,15 @@ const BesoinEntretienID = ({ materielId }) => {
   return (
     <div>
       {/* <ul className="containerAll"> */}
-        {BesoinEntretienID.map((notice) => (
+      {BesoinEntretienID.map((notice) => (
+        <div key={notice.IdBesoinEntretien}>
           <div className="frameRetrecieNotice">
             <div className="TexteNotice">
               <p>{notice.TypeEntretien}</p>
             </div>
           </div>
-        ))}
+        </div>
+      ))}
       {/* </ul> */}
     </div>
   );

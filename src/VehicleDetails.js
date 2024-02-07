@@ -1,41 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { ref, onValue } from "firebase/database"; // Assurez-vous que cette importation est correctement utilisée ailleurs
-import { db } from "./Firebase.js"; // Assurez-vous que cette importation est correctement utilisée ailleurs
-import BesoinEntretienID from "./BesoinEntretienByID";
-import MaterielByID from "./MaterielID.js";
 import "./CSS/MaterielList.css";
-import MaterielInfo from "./MaterielInfo.js";
+import useGetMaterielData from "./UseGetMaterielData.js";
+import MaterielByID from "./MaterielID.js";
+import BesoinEntretienID from "./BesoinEntretienByIDMat.js";
+import useGetBesoinEntretienData from "./UseGetBesoinEntretienData.js";
 
 const VehicleDetails = () => {
   const { vehicleId } = useParams();
-  const [materielInfo, setMaterielInfo] = useState([]);
+  console.log("vehicule", vehicleId);
+  const valueMateriel = useGetMaterielData({ vehicleId });
+  console.log("value", valueMateriel);
 
-  useEffect(() => {
-    const materielRef = ref(db, `Materiel/${vehicleId}`);
-
-    const unsubscribe = onValue(materielRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        setMaterielInfo([data]);
-        console.log("data", data);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [vehicleId]);
+  // Ajoutez une vérification pour s'assurer que materielInfo n'est pas null
+  const materielInfo = valueMateriel.materielInfo;
 
   return (
     <ul className="containerAll">
       <MaterielByID materielId={vehicleId} />
-      {materielInfo.map((mat) => (
-        <div className="TexteDetail">
-          <p key={mat.IdMat}>Mise en service le : {mat.MiseService}</p>
-          <p>
-            Première vidange moteur effectuée à : {mat.VidangeMoteur} heures
-          </p>
-        </div>
-      ))}
+      <div className="TexteDetail">
+        {console.log("test", materielInfo)}
+        {materielInfo && ( // Ajoutez cette ligne pour vérifier que materielInfo existe avant d'essayer d'accéder à ses propriétés
+          <>
+            <p>mise en service le : {materielInfo.MiseService}</p>
+            <p>
+              Première vidange moteur effectuée à : {materielInfo.VidangeMoteur}{" "}
+              heures
+            </p>
+          </>
+        )}
+      </div>
       <div className="Titre">Entretiens possibles</div>
       <BesoinEntretienID materielId={vehicleId} />
     </ul>
