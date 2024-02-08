@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import MaterielList from "./MaterielList";
-import TracteurFormIm from "./FormMateriel";
-import ChoixMaterielNouveau from "./ChoixMaterielNouveau";
-import VehicleDetails from "./VehicleDetails";
-import "./CSS/Home.css";
+import MaterielList from "../Component_Home/MaterielList";
+import TracteurFormIm from "../Component_Home/FormMateriel";
+import ChoixMaterielNouveau from "../Component_Home/ChoixMaterielNouveau";
+import VehicleDetails from "../Component_Home/VehicleDetails";
+import "../CSS/Home.css";
 // Autres imports si nécessaire
 
 const Home = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { onValue, ref} from "firebase/database";
-import { db } from "./Firebase.js";
+import { onValue, ref } from "firebase/database";
+import { db } from "../Firebase.js";
 
 function useGetMaterielData(IdMat) {
   const [materielInfo, setMaterielInfo] = useState(null);

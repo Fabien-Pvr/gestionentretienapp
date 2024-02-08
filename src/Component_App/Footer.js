@@ -1,9 +1,9 @@
 import React from "react";
-import logo1 from "./image/GroupIconTracteur.svg";
-import logo2 from "./image/VectoriconAjout.svg";
-import logo3 from "./image/VectoriconHistorique.svg";
-import logo4 from "./image/VectoriconSetting.svg";
-import "./CSS/Navbar.css";
+import logo1 from "../image/GroupIconTracteur.svg";
+import logo2 from "../image/VectoriconAjout.svg";
+import logo3 from "../image/VectoriconHistorique.svg";
+import logo4 from "../image/VectoriconSetting.svg";
+import "../CSS/Navbar.css";
 
 const Navbar = () => {
   return (

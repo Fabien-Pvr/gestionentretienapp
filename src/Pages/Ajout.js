@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import ChoixNoticeVsEntretien from "./ChoixNoticeVsEntretien";
-import NoticeForm from "./FormNotice";
-import FormEntretien from "./FormEntretien";
+import ChoixNoticeVsEntretien from "../Component_Ajout/ChoixNoticeVsEntretien";
+import NoticeForm from "../Component_Ajout/FormNotice";
+import FormEntretien from "../Component_Ajout/FormEntretien";
 
-import "./CSS/Home.css";
+import "../CSS/Home.css";
 
 const Ajout = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ref, remove } from "firebase/database";
-import { db } from "./Firebase";
+import { db } from "../Firebase";
 
 const DeleteElement = ({ table, id }) => {
   const [error, setError] = useState("");

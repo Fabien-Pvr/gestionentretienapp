@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ref, set, get, push } from "firebase/database";
-import { db } from "./Firebase";
-import { RecupererIdMat, GetAllModeles } from "./queries";
+import { db } from "../Firebase";
+import { RecupererIdMat, GetAllModeles } from "../Component_queries/queries";
 
 const FormEntretien = () => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Utilisation de la date actuelle
