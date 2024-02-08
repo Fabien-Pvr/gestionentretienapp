@@ -10,10 +10,10 @@ import "./CSS/Home.css";
 const Home = () => {
   return (
     <div>
-      <div>
+      <div className="positoinBarreChoix">
         <ChoixMaterielNouveau />
       </div>
-      <div>
+      <div className="positoinMaterielList">
         <Routes>
           <Route path="/materiel" element={<MaterielList />} />
           <Route path="/nouveau" element={<TracteurFormIm />} />

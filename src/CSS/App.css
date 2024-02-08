@@ -1,8 +1,8 @@
 .App {
   background-color: #fbfff0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -27,6 +27,4 @@
 
 .ContainerInit {
   margin: 0px 0px 20px 0px;
-  flex: 1;
-  overflow-y: auto;
 }

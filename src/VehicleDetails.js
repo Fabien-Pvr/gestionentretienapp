@@ -15,14 +15,19 @@ const VehicleDetails = () => {
   // Ajoutez une vérification pour s'assurer que materielInfo n'est pas null
   const materielInfo = valueMateriel.materielInfo;
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("fr-FR");
+  };
+
   return (
     <ul className="containerAll">
       <MaterielByID materielId={vehicleId} />
       <div className="TexteDetail">
         {console.log("test", materielInfo)}
-        {materielInfo && ( // Ajoutez cette ligne pour vérifier que materielInfo existe avant d'essayer d'accéder à ses propriétés
+        {materielInfo && (
           <>
-            <p>mise en service le : {materielInfo.MiseService}</p>
+            <p>Mise en service le : {formatDate(materielInfo.MiseService)}</p>
             <p>
               Première vidange moteur effectuée à : {materielInfo.VidangeMoteur}{" "}
               heures

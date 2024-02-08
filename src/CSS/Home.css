@@ -1,4 +1,11 @@
-/* .test1 {
-  flex: 1;
+.positoinBarreChoix {
+  position: fixed;
+  background-color: #fbfff0;
+  width: 100%;
+  margin-top: -2px;
+}
+
+.positoinMaterielList {
   overflow-y: auto;
-} */
+  padding-top: 20%;
+}

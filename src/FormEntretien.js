@@ -78,58 +78,65 @@ const FormEntretien = () => {
   return (
     <form onSubmit={handleFormSubmit}>
       {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <label>
-        Modèle:
-        <select value={modele} onChange={(e) => setModele(e.target.value)}>
-          <option value="" disabled>
-            Sélectionnez un modèle
-          </option>
-          {modeles.map((m) => (
-            <option key={m} value={m}>
-              {m}
+      <div className="FormNotice">
+        <label className="FormMenuDel">
+          <select
+            className="NoticeForm-selection-format"
+            value={modele}
+            onChange={(e) => setModele(e.target.value)}
+          >
+            <option value="" disabled>
+              Sélectionnez un modèle
             </option>
-          ))}
-        </select>
-      </label>
+            {modeles.map((m) => (
+              <option className="NoticeForm-option-selection" key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+        </label>
 
-      <label>
-        Type d'entretien :
-        <input
-          type="text"
-          value={TypeEntretien}
-          onChange={(e) => setTypeEntretien(e.target.value)}
-        />
-      </label>
+        <label className="LabelForm">
+          <input
+            type="text"
+            value={TypeEntretien}
+            onChange={(e) => setTypeEntretien(e.target.value)}
+            placeholder="Type d'entretien"
+            required
+          />
+        </label>
 
-      <label>
-        Date :
-        <input
-          type="date" // Utilisation du type 'date' pour le champ de date
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </label>
+        <label className="LabelForm">
+          <input
+            type="date" // Utilisation du type 'date' pour le champ de date
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+          />
+        </label>
 
-      <label>
-        NbHeure :
-        <input
-          type="number"
-          value={NbHeure}
-          onChange={(e) => setNbHeure(e.target.value)}
-        />
-      </label>
+        <label className="LabelForm">
+          <input
+            type="number"
+            value={NbHeure}
+            onChange={(e) => setNbHeure(e.target.value)}
+            placeholder="Nombre d'heures au compteur"
+            required
+          />
+        </label>
 
-      <label>
-        Observation :
-        <input
-          type="text"
-          value={Observation}
-          onChange={(e) => setObservation(e.target.value)}
-        />
-      </label>
-
-      <button type="submit">Enregistrer</button>
+        <label className="LabelForm">
+          <input
+            type="text"
+            value={Observation}
+            onChange={(e) => setObservation(e.target.value)}
+            placeholder="Observations - remarques"
+          />
+        </label>
+      </div>
+      <div className="PositionEnregistrer">
+        <button type="submit">Enregistrer</button>
+      </div>
     </form>
   );
 };

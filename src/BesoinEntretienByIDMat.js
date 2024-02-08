@@ -23,7 +23,6 @@ const BesoinEntretienID = ({ materielId }) => {
   }, [materielId]);
   return (
     <div>
-      {/* <ul className="containerAll"> */}
       {BesoinEntretienID.map((notice) => (
         <div key={notice.IdBesoinEntretien}>
           <div className="frameRetrecieNotice">
@@ -33,7 +32,6 @@ const BesoinEntretienID = ({ materielId }) => {
           </div>
         </div>
       ))}
-      {/* </ul> */}
     </div>
   );
 };

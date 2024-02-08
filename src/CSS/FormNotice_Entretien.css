@@ -1,38 +1,31 @@
-.FormMat {
+form {
+  padding-bottom: 20%;
+}
+.FormNotice {
   display: flex;
   flex-direction: column;
-  margin: 30px 30px 20px 30px;
+  margin: 0px 30px 20px 30px;
   padding-right: 20px;
   align-items: flex-start;
 }
 
-.FormImage {
+.FormMenuDel {
   display: flex;
-  justify-content: center;
-  padding: 10px 20px;
-  border: 2px solid #577d5fcc;
+  padding: 10px 0px;
   background-color: #fbfff0;
-  color: #577d5fcc;
-  font-size: 16px;
-  margin: 10px 15%;
   cursor: pointer;
-  border-radius: 5px;
+  gap: 20px;
 }
 
-.FormImage::before {
-  content: "+ ";
-  color: #577d5f;
-  margin-right: 10px;
-}
-
-/* Style pour l'image de prévisualisation */
-.image-preview {
-  max-width: 100%;
-  margin-top: 10px;
-}
-
-input[type="file" i] {
-  background-color: #fbfff0;
+.NoticeForm-selection-format {
+  padding: 2px;
+  border: none;
+  border-radius: 2px;
+  font-size: medium;
+  font-style: italic;
+  background: #fbfff0;
+  font-style: italic;
+  font-size: 15px;
 }
 
 input[type="text" i],
@@ -44,6 +37,10 @@ input[type="date" i] {
   height: 25px;
 }
 
+.NoticeForm-option-selection {
+  font-size: 15px;
+}
+
 .LabelForm {
   border-bottom: black 1px solid;
   width: 100%;
@@ -53,7 +50,7 @@ input[type="date" i] {
 
 input::placeholder {
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: rgb(126, 126, 126);
 }
 .PositionEnregistrer {
@@ -76,5 +73,5 @@ button {
   line-height: 24px; /* 150% */
   letter-spacing: 0.15px;
   border: none;
-  margin-top: 5%;
+  margin-top: auto;
 }

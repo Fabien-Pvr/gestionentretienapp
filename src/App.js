@@ -5,8 +5,9 @@ import "./CSS/App.css";
 import Home from "./Home"; // Home contiendra les Routes
 import Footer from "./Footer";
 import Head from "./Head";
-
+import useGetMaterielData from "./UseGetMaterielData";
 import NoticeForm from "./FormNotice";
+import Ajout from "./Ajout";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         </header>
 
         <main className="ContainerInit">
-          <Home />
+          {/* <Home /> */}
+          {/* <NoticeForm /> */}
+          <Ajout />
         </main>
         <Footer />
       </div>
