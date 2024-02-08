@@ -1,5 +1,5 @@
 // queries.js
-import { db } from "./Firebase";
+import { db } from "../Firebase";
 import { ref, get } from "firebase/database";
 
 const RecupererIdMat = async (Modele) => {
@@ -179,4 +179,3 @@ export {
   countElements,
   GetAllModeles,
 };
-  

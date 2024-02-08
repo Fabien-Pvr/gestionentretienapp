@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./CSS/ChoixMaterielNouveau.css";
+import "../CSS/ChoixMaterielNouveau.css";
 import { useState } from "react";
 
 const ChoixMaterielNouveau = () => {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { onValue, ref } from "firebase/database";
-import { db } from "./Firebase.js";
-import "./CSS/MaterielList.css";
-import BackgroundImageComponent from "./ImageBackgroundComponent.js";
+import { db } from "../Firebase.js";
+import "../CSS/MaterielList.css";
+import BackgroundImageComponent from "../Component_queries/ImageBackgroundComponent.js";
 import { Link } from "react-router-dom";
 
 const MaterielList = () => {

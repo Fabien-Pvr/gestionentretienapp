@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { onValue, ref } from "firebase/database";
-import { db } from "./Firebase.js";
-import "./CSS/BesoinEntretienByID.css";
+import { db } from "../Firebase.js";
+import "../CSS/BesoinEntretienByID.css";
 
 const BesoinEntretienID = ({ materielId }) => {
   const [BesoinEntretienID, setBesoinEntretienID] = useState([]);

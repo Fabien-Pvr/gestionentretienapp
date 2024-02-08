@@ -1,5 +1,5 @@
-import logo from "./image/LogoP2I.svg";
-import "./CSS/App.css";
+import logo from "../image/LogoP2I.svg";
+import "../CSS/App.css";
 
 const Head = () => {
   return (

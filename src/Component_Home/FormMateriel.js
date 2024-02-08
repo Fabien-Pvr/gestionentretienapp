@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ref as databaseRef, set, push } from "firebase/database";
-import "./CSS/FormMateriel.css";
+import "../CSS/FormMateriel.css";
 import {
   getStorage,
   ref as storageRef,
   uploadBytes,
   // getDownloadURL,
 } from "firebase/storage";
-import { db } from "./Firebase";
+import { db } from "../Firebase";
 
 const TracteurFormIm = () => {
   const [Modele, setModele] = useState("");

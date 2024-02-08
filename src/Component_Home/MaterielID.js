@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { onValue, ref } from "firebase/database";
-import { db } from "./Firebase.js";
-import "./CSS/MaterielList.css";
-import BackgroundImageComponent from "./ImageBackgroundComponent.js";
+import { db } from "../Firebase.js";
+import "../CSS/MaterielList.css";
+import BackgroundImageComponent from "../Component_queries/ImageBackgroundComponent.js";
 
 const MaterielByID = ({ materielId }) => {
   const [materiel, setMateriel] = useState([]);
