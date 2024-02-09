@@ -12,7 +12,7 @@ const Ajout = () => {
       <div className="positoinBarreChoix">
         <ChoixNoticeVsEntretien />
       </div>
-      <div className="positoinMaterielList">
+      <div className="positoinForm_Enregistrement">
         <Routes>
           <Route path="/notice" element={<NoticeForm />} />
           <Route path="/entretien" element={<FormEntretien />} />

@@ -13,14 +13,14 @@ const ChoixMaterielNouveau = () => {
   return (
     <div className="barreChoix">
       <Link
-        to="/notice"
+        to="/ajout/notice"
         className={activePage === "notice" ? "nomActive" : "nomUnactive"}
         onClick={() => handleClick("notice")}
       >
         Notice
       </Link>
       <Link
-        to="/entretien"
+        to="/ajout/entretien"
         className={activePage === "entretien" ? "nomActive" : "nomUnactive"}
         onClick={() => handleClick("entretien")}
       >

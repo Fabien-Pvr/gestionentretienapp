@@ -1,40 +1,59 @@
-import React from "react";
-import logo1 from "../image/GroupIconTracteur.svg";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../CSS/Navbar.css";
+
+// Importation des logos
+import logo1 from "../image/tracteur.png";
 import logo2 from "../image/VectoriconAjout.svg";
 import logo3 from "../image/VectoriconHistorique.svg";
 import logo4 from "../image/VectoriconSetting.svg";
-import "../CSS/Navbar.css";
 
 const Navbar = () => {
+  const [activeNavItem, setActiveNavItem] = useState("Matériel");
+
+  // Configuration des éléments de navigation
+  const navItems = [
+    { name: "Matériel", path: "/home/materiel", icon: logo1 },
+    { name: "Ajout", path: "/ajout/notice", icon: logo2 },
+    { name: "Historique", path: "/historique", icon: logo3 },
+    { name: "Paramètres", path: "/parametres", icon: logo4 },
+  ];
+
+  const handleNavItemClick = (item) => {
+    setActiveNavItem(item);
+  };
+
   return (
     <div className="navbar">
-      <div className="navbar-frame-active">
-        <div className="frameIcons">
-          <img src={logo1} className="icons" alt="iconsAccueil" />
-        </div>
-        <div className="navbar-text-active">Matériel</div>
-      </div>
-
-      <div className="navbar-frame">
-        <div className="frameIcons">
-          <img src={logo2} className="icons" alt="iconsAjout" />
-        </div>
-        <div className="navbar-text">Ajout</div>
-      </div>
-
-      <div className="navbar-frame">
-        <div className="frameIcons">
-          <img src={logo3} className="icons" alt="iconsHistorique" />
-        </div>
-        <div className="navbar-text">Historique</div>
-      </div>
-
-      <div className="navbar-frame">
-        <div className="frameIcons">
-          <img src={logo4} className="icons" alt="iconsSetting" />
-        </div>
-        <div className="navbar-text">Paramètres</div>
-      </div>
+      {navItems.map((item) => (
+        <Link to={item.path} key={item.name}>
+          <div
+            className={
+              activeNavItem === item.name
+                ? "navbar-frame-active"
+                : "navbar-frame"
+            }
+            onClick={() => handleNavItemClick(item.name)}
+          >
+            <div className="frameIcons">
+              <img
+                src={item.icon}
+                className="icons-tract"
+                alt={`icon-${item.name}`}
+              />
+            </div>
+            <div
+              className={
+                activeNavItem === item.name
+                  ? "navbar-text-active"
+                  : "navbar-text"
+              }
+            >
+              {item.name}
+            </div>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };

@@ -3,9 +3,16 @@
   background-color: #fbfff0;
   width: 100%;
   margin-top: -2px;
+  top: 120px;
+  z-index: 2;
 }
 
 .positoinMaterielList {
   overflow-y: auto;
-  padding-top: 20%;
+  padding-top: 15%;
+}
+
+.positoinForm_Enregistrement {
+  overflow-y: auto;
+  padding-top: 15%;
 }

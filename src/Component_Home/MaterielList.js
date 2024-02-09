@@ -33,7 +33,7 @@ const MaterielList = () => {
                 <p className="TextSmall">{mat.Puissance} chevaux </p>
               </div>
               <div>
-                <Link to={`/vehicule/${mat.IdMat}`}>
+                <Link to={`/home/vehicule/${mat.IdMat}`}>
                   <button className="Button">Voir plus</button>
                 </Link>
               </div>

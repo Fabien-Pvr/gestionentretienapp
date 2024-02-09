@@ -1,13 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom"; // Import de BrowserRouter
-import logo from "./image/LogoP2I.svg";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./CSS/App.css";
-import Home from "./Pages/Home"; // Home contiendra les Routes
+
+// Importez vos composants de page
+import Home from "./Pages/Home";
+import Ajout from "./Pages/Ajout";
+import Historique from "./Pages/Historique";
+import Parametres from "./Pages/Parametres";
+// import Entretien from "./Pages/Entretien"; // Assurez-vous d'avoir un composant pour la page Entretien
+
 import Footer from "./Component_App/Footer";
 import Head from "./Component_App/Head";
-import useGetMaterielData from "./Component_Home/UseGetMaterielData";
-import NoticeForm from "./Component_Ajout/FormNotice";
-import Ajout from "./Pages/Ajout";
 
 function App() {
   return (
@@ -18,11 +21,17 @@ function App() {
         </header>
 
         <main className="ContainerInit">
-          {/* <Home /> */}
-          {/* <NoticeForm /> */}
-          <Ajout />
+          {/* Le contenu spécifique de la page sera rendu par les composants Route ci-dessous */}
         </main>
+
         <Footer />
+
+        <Routes>
+          <Route path="/home/*" element={<Home />} />
+          <Route path="/ajout/*" element={<Ajout />} />
+          <Route path="/historique" element={<Historique />} />
+          <Route path="/parametres" element={<Parametres />} />
+        </Routes>
       </div>
     </Router>
   );

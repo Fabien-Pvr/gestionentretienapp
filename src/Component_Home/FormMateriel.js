@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ref as databaseRef, set, push } from "firebase/database";
-import "../CSS/FormMateriel.css";
-import {
-  getStorage,
-  ref as storageRef,
-  uploadBytes,
-  // getDownloadURL,
-} from "firebase/storage";
+import { getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { db } from "../Firebase";
+import "../CSS/FormMateriel.css";
 
 const TracteurFormIm = () => {
   const [Modele, setModele] = useState("");
@@ -17,18 +12,30 @@ const TracteurFormIm = () => {
   );
   const [VidangeMoteur, setVidangeMoteur] = useState("");
   const [ImageFile, setImageFile] = useState(null);
-  const [NomImage, setNomImage] = useState("");
+  const [NomImage, setNomImage] = useState(""); // Utilisé pour stocker l'URL de prévisualisation
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    // Nettoie l'URL temporaire lors du démontage ou de la mise à jour de NomImage
+    return () => {
+      if (NomImage.startsWith("blob:")) {
+        URL.revokeObjectURL(NomImage);
+      }
+    };
+  }, [NomImage]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setImageFile(file);
+    if (file) {
+      const previewUrl = URL.createObjectURL(file); // Crée un URL temporaire
+      setImageFile(file);
+      setNomImage(previewUrl); // Utilise l'URL temporaire pour la prévisualisation
+    }
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // Vérifications du type de données
     if (isNaN(Number(Puissance)) || isNaN(Number(VidangeMoteur))) {
       setError("La Puissance et le nombre d'heures doivent être des nombres.");
       return;
@@ -37,17 +44,15 @@ const TracteurFormIm = () => {
     try {
       const materielRef = databaseRef(db, "Materiel");
       const newTracteurRef = push(materielRef);
-      const NomImage = ImageFile.name;
-      // Vérification si une image est sélectionnée
+
       if (ImageFile) {
         const storage = getStorage();
         const storageReference = storageRef(
           storage,
           `images/${newTracteurRef.key}/${ImageFile.name}`
         );
-        setNomImage(NomImage);
         await uploadBytes(storageReference, ImageFile);
-        console.log("Image uploaded successfully. NomImage:", NomImage);
+        console.log("Image uploaded successfully. NomImage:", ImageFile.name);
       }
 
       const tracteurData = {
@@ -56,7 +61,7 @@ const TracteurFormIm = () => {
         Puissance,
         MiseService,
         VidangeMoteur,
-        NomImage,
+        NomImage: ImageFile.name, // Stocke le nom de l'image pour la sauvegarde
       };
       await set(newTracteurRef, tracteurData);
 
@@ -79,7 +84,14 @@ const TracteurFormIm = () => {
   return (
     <form onSubmit={handleFormSubmit}>
       {error && <p style={{ color: "red" }}>{error}</p>}
-
+      {/* Affiche la prévisualisation de l'image */}
+      {NomImage.startsWith("blob:") && (
+        <div className="image-preview-position">
+          <div className="image-preview-fondNoir">
+            <img className="image-preview" src={NomImage} alt="Preview" />
+          </div>
+        </div>
+      )}
       <label className="FormImage">
         Ajouter une image
         <input
@@ -90,13 +102,9 @@ const TracteurFormIm = () => {
         />
       </label>
 
-      {NomImage && (
-        <img className="image-preview" src={NomImage} alt="Preview" />
-      )}
-
       <div className="FormMat">
+        {/* Inputs pour les informations du tracteur */}
         <label className="LabelForm">
-          {/* Modèle: */}
           <input
             type="text"
             value={Modele}
@@ -135,6 +143,7 @@ const TracteurFormIm = () => {
           />
         </label>
       </div>
+
       <div className="PositionEnregistrer">
         <button type="submit">Enregistrer</button>
       </div>

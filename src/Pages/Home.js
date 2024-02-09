@@ -5,7 +5,7 @@ import TracteurFormIm from "../Component_Home/FormMateriel";
 import ChoixMaterielNouveau from "../Component_Home/ChoixMaterielNouveau";
 import VehicleDetails from "../Component_Home/VehicleDetails";
 import "../CSS/Home.css";
-// Autres imports si nécessaire
+
 
 const Home = () => {
   return (
@@ -15,9 +15,9 @@ const Home = () => {
       </div>
       <div className="positoinMaterielList">
         <Routes>
-          <Route path="/materiel" element={<MaterielList />} />
-          <Route path="/nouveau" element={<TracteurFormIm />} />
-          <Route path="/vehicule/:vehicleId" element={<VehicleDetails />} />
+          <Route path="materiel" element={<MaterielList />} />
+          <Route path="nouveau" element={<TracteurFormIm />} />
+          <Route path="vehicule/:vehicleId" element={<VehicleDetails />} />
         </Routes>
       </div>
     </div>
