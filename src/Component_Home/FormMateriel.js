@@ -92,8 +92,8 @@ const TracteurFormIm = () => {
           </div>
         </div>
       )}
-      <label className="FormImage">
-        Ajouter une image
+      <label className={`FormImage ${NomImage ? "image-changed" : ""}`}>
+        {NomImage ? "Changer l'image" : "Ajouter une image"}
         <input
           type="file"
           accept="image/*"

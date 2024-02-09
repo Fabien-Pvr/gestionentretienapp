@@ -12,7 +12,7 @@
 
 .TexteNotice {
   color: white;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 50%);
   width: 100%;
   height: 100%;
   border-radius: 15px;
@@ -21,7 +21,30 @@
   line-height: 24px;
   letter-spacing: 0.15px;
 }
+.TexteNotice.active {
+  background: rgba(0, 0, 0, 0.77); /* Exemple de couleur de fond plus foncée */
+}
 
 .TexteNotice p {
   margin: 5% 0% 5% 0%;
+}
+
+.InformationsSupplementaires {
+  /* Styles pour les informations supplémentaires */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0px 7% 0px 7%;
+}
+.InformationsSupplementaires-text {
+  display: flex;
+  font-size: medium;
+  font-weight: normal;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 22px;
+}
+
+.InformationsSupplementaires-text-laber {
+  font-style: italic;
 }

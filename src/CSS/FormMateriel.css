@@ -1,7 +1,7 @@
 .FormMat {
   display: flex;
   flex-direction: column;
-  margin: 30px 30px 20px 30px;
+  margin: 0px 30px 20px 30px;
   padding-right: 20px;
   align-items: flex-start;
 }
@@ -21,6 +21,17 @@
   content: "+ ";
   color: #577d5f;
   margin-right: 10px;
+}
+
+.FormImage.image-changed {
+  border: none; 
+  background-color: #fbfff0; 
+  color: #4a7c59; 
+}
+
+.FormImage.image-changed::before {
+  content: "↻ "; 
+  color: #577d5f;
 }
 
 /* Style pour l'image de prévisualisation */
