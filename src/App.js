@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import "./CSS/App.css";
 
 // Importez vos composants de page
@@ -17,7 +22,8 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <Head />
+          <Head />{" "}
+          {/* Le composant Head est maintenant présent sur toutes les pages */}
         </header>
 
         <main className="ContainerInit"></main>
@@ -29,6 +35,7 @@ function App() {
           <Route path="/ajout/*" element={<Ajout />} />
           <Route path="/historique/*" element={<Historique />} />
           <Route path="/parametres/*" element={<Parametres />} />
+          <Route path="*" element={<Navigate replace to="/home/materiel" />} />
         </Routes>
       </div>
     </Router>
