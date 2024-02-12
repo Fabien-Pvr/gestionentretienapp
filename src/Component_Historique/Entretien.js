@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { GetListeEntretien, RecupererModeleMat } from "./queries";
+import {
+  GetListeEntretien,
+  RecupererModeleMat,
+} from "../Component_queries/queries";
+import "../CSS/Entretien.css";
 
 const GetEntretien = () => {
   const [Entretien, setEntretien] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,12 +23,8 @@ const GetEntretien = () => {
 
         const newData = await Promise.all(
           GetEntretienData.map(async (GetEntretien) => {
-            console.log("GetEntretienData", GetEntretienData);
-            console.log("testAvantultime", GetEntretien.IdMat);
             const IdMat = GetEntretien.IdMat;
-            console.log("testultime", IdMat);
             const matData = await RecupererModeleMat(IdMat);
-            console.log("tessssttssss", matData);
 
             // Convertir la date de string à objet Date
             const formattedDate = new Date(
@@ -54,23 +55,39 @@ const GetEntretien = () => {
 
     fetchData();
   }, []);
+  const handleItemClick = (id) => {
+    if (selectedId === id) {
+      // Si l'élément cliqué est déjà sélectionné, le désélectionner
+      setSelectedId(null);
+    } else {
+      // Sinon, définir cet élément comme sélectionné
+      setSelectedId(id);
+    }
+  };
 
   return (
     <div>
-      <h2>Liste des entretiens :</h2>
-      <ul>
+      <ul className="ContainerAll">
         {Entretien.map((besoin, index) => (
-          <li key={index}>
-            {console.log("besoin", besoin)}
-            <p>Modele du matériel: {besoin.modeleMat}</p>
-            <p>
-              Type d'entretien : {besoin.GetEntretien.Entretien.TypeEntretien}
+          <div
+            className="Entretien-ContainerFrame"
+            key={index}
+            onClick={() => handleItemClick(index)} // Gestion du clic pour chaque élément
+          >
+            <p className="ptest1">{besoin.modeleMat}</p>
+            <p className="ptest2">
+              {besoin.GetEntretien.Entretien.TypeEntretien}
             </p>
-            {/* <p>IDmat: {besoin.GetEntretien.IdMat}</p> */}
-            <p>Date: {besoin.GetEntretien.Entretien.Date}</p>
-            <p>Nombre Heure: {besoin.GetEntretien.Entretien.NbHeure}</p>
-            <p>Observation: {besoin.GetEntretien.Entretien.Observation}</p>
-          </li>
+            <p className="ptest4">{besoin.GetEntretien.Entretien.Date}</p>
+            <p className="ptest3">
+              {besoin.GetEntretien.Entretien.NbHeure} heures au compteur
+            </p>
+            {selectedId === index && (
+              <p className="ptest3">
+                {besoin.GetEntretien.Entretien.Observation}
+              </p>
+            )}
+          </div>
         ))}
       </ul>
     </div>

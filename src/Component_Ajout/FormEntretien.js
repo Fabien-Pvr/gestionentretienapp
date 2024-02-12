@@ -47,7 +47,7 @@ const FormEntretien = () => {
         const entretienData = {
           IdEntretien: newEntretienRef.key,
           Date: date,
-          IDMat: idMat, // Utiliser l'IDmat récupéré
+          IdMat: idMat, // Utiliser l'IDmat récupéré
           NbHeure: NbHeure,
           Observation: Observation,
           TypeEntretien: TypeEntretien,

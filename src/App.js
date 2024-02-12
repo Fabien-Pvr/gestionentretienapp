@@ -20,17 +20,15 @@ function App() {
           <Head />
         </header>
 
-        <main className="ContainerInit">
-          {/* Le contenu spécifique de la page sera rendu par les composants Route ci-dessous */}
-        </main>
+        <main className="ContainerInit"></main>
 
         <Footer />
 
         <Routes>
           <Route path="/home/*" element={<Home />} />
           <Route path="/ajout/*" element={<Ajout />} />
-          <Route path="/historique" element={<Historique />} />
-          <Route path="/parametres" element={<Parametres />} />
+          <Route path="/historique/*" element={<Historique />} />
+          <Route path="/parametres/*" element={<Parametres />} />
         </Routes>
       </div>
     </Router>

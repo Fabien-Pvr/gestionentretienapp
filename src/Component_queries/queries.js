@@ -42,12 +42,8 @@ const RecupererModeleMat = async (IdMat) => {
       const matKeys = Object.keys(materiels);
       for (const key of matKeys) {
         const matData = materiels[key];
-        console.log("blebla", matData);
-        console.log("testfinaljenaimarre", matData.IdMat);
         if (matData.IdMat === IdMat) {
-          console.log("MatDataTest:", matData);
           const modeleMat = matData.Modele;
-          console.log("modeleMat", modeleMat);
           return modeleMat;
         }
       }
@@ -105,10 +101,6 @@ const GetListeEntretien = async () => {
       async (EntretienId) => {
         const Entretien = EntretienData[EntretienId];
         const IdMat = Entretien.IdMat;
-        console.log("testIdMat:", IdMat);
-
-        //const matData = await Mat(IdMat);
-        console.log("prout:", Entretien);
 
         return {
           Entretien: Entretien,
