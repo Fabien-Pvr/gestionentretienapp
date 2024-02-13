@@ -35,7 +35,6 @@ function App() {
           <Route path="/ajout/*" element={<Ajout />} />
           <Route path="/historique/*" element={<Historique />} />
           <Route path="/parametres/*" element={<Parametres />} />
-          <Route path="*" element={<Navigate replace to="/home/materiel" />} />
         </Routes>
       </div>
     </Router>
