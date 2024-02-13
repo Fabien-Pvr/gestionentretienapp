@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { onValue, ref } from "firebase/database";
 import { db } from "../Firebase.js";
 

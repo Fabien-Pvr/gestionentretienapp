@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ref, set, get, push } from "firebase/database";
+import { ref, set, push } from "firebase/database";
 import { db } from "../Firebase";
 import { RecupererIdMat, GetAllModeles } from "../Component_queries/queries";
 

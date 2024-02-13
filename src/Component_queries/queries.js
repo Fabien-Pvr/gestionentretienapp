@@ -14,7 +14,7 @@ const RecupererIdMat = async (Modele) => {
         const matData = materiels[key];
         console.log("blebla", matData);
         console.log("testfinaljenaimarre", matData.IdMat);
-        if (matData.Modele == Modele) {
+        if (matData.Modele === Modele) {
           console.log("MatDataTest:", matData);
           const IdMat = matData.IdMat;
           console.log("modeleMat", IdMat);
