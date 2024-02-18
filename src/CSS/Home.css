@@ -1,5 +1,5 @@
 .positoinBarreChoix {
-  position: fixed;
+  position: sticky;
   background-color: #fbfff0;
   width: 100%;
   margin-top: -2px;
@@ -9,7 +9,7 @@
 
 .positoinMaterielList {
   overflow-y: auto;
-  padding-top: 15%;
+  padding-top: 3%;
 }
 
 .positoinForm_Enregistrement {
