@@ -103,7 +103,6 @@ const TracteurFormIm = () => {
       </label>
 
       <div className="FormMat">
-        {/* Inputs pour les informations du tracteur */}
         <label className="LabelForm">
           <input
             type="text"
