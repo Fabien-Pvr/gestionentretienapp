@@ -5,7 +5,6 @@ import "./CSS/App.css";
 import Deconnexion from "./Component_Utilisateurs/Deconnexion";
 import Connexion from "./Component_Utilisateurs/Connexion";
 import Inscription from "./Component_Utilisateurs/Inscription";
-import Application from "./AppAfterLogin";
 
 // Importez vos composants de page
 import Home from "./Pages/Home";
@@ -16,15 +15,28 @@ import Parametres from "./Pages/Parametres";
 
 import Footer from "./Component_App/Footer";
 import Head from "./Component_App/Head";
-import { AuthProvider } from "./Component_Utilisateurs/AuthContext";
-import VerifLogin from "./VerifLogin";
 
-function App() {
+function Application() {
   return (
-    <AuthProvider>
-      <VerifLogin />
-    </AuthProvider>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Head />
+        </header>
+
+        <main className="ContainerInit"></main>
+
+        <Footer />
+
+        <Routes>
+          <Route path="/home/*" element={<Home />} />
+          <Route path="/ajout/*" element={<Ajout />} />
+          <Route path="/historique/*" element={<Historique />} />
+          <Route path="/parametres/*" element={<Parametres />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+export default Application;
