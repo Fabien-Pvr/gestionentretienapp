@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./CSS/App.css";
+import Deconnexion from "./Component_Utilisateurs/SignOut";
+import Connexion from "./Component_Utilisateurs/Conexion";
+import Inscription from "./Component_Utilisateurs/Inscription";
 
 // Importez vos composants de page
 import Home from "./Pages/Home";
@@ -20,16 +23,22 @@ function App() {
           <Head />
         </header>
 
-        <main className="ContainerInit"></main>
+        <main className="ContainerInit">
+          <Inscription />
+          <hr></hr>
+          <Deconnexion />
+          <hr></hr>
+          <Connexion />
+        </main>
 
         <Footer />
 
-        <Routes>
+        {/* <Routes>
           <Route path="/home/*" element={<Home />} />
           <Route path="/ajout/*" element={<Ajout />} />
           <Route path="/historique/*" element={<Historique />} />
           <Route path="/parametres/*" element={<Parametres />} />
-        </Routes>
+        </Routes> */}
       </div>
     </Router>
   );

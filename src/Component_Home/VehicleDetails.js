@@ -4,6 +4,9 @@ import "../CSS/MaterielList.css";
 import useGetMaterielData from "./UseGetMaterielData.js";
 import MaterielByID from "./MaterielID.js";
 import BesoinEntretienID from "./BesoinEntretienByIDMat.js";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { red } from "@mui/material/colors";
 
 const VehicleDetails = () => {
   const { vehicleId } = useParams();
@@ -21,6 +24,10 @@ const VehicleDetails = () => {
 
   return (
     <ul className="containerAll">
+      <div>
+        <BorderColorIcon className="Modification" />
+        <DeleteOutlineIcon sx={{ color: "red" }} className="Suppression" />
+      </div>
       <MaterielByID materielId={vehicleId} />
       <div className="TexteDetail">
         {console.log("test", materielInfo)}
@@ -34,7 +41,7 @@ const VehicleDetails = () => {
           </>
         )}
       </div>
-      <div className="Titre">Entretiens possibles</div>
+      <div className="Titre">Notices disponible</div>
       <BesoinEntretienID materielId={vehicleId} />
     </ul>
   );
