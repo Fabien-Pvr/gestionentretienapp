@@ -3,6 +3,8 @@ import { ref, set, push } from "firebase/database";
 import { db } from "../Firebase";
 import { RecupererIdMat, GetAllModeles } from "../Component_queries/queries";
 import "../CSS/FormNotice_Entretien.css";
+import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation";
+import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 
 const NoticeForm = () => {
   const [modeles, setModeles] = useState([]);
@@ -15,10 +17,16 @@ const NoticeForm = () => {
   const [RefFiltre1, setRefFiltre1] = useState("");
   const [error, setError] = useState("");
 
+  const { currentUser } = useAuth();
+  const idUser = currentUser ? currentUser.uid : null;
+
+  const idExp = useFindUserExploitation(idUser);
+
   useEffect(() => {
     const fetchModeles = async () => {
       try {
-        const modelesList = await GetAllModeles(); // Utilisez votre fonction pour récupérer la liste des modèles
+        const modelesList = await GetAllModeles(idExp);
+        console.log("test liste", modelesList); // Utilisez votre fonction pour récupérer la liste des modèles
         setModeles(modelesList);
       } catch (error) {
         console.error(
@@ -29,7 +37,7 @@ const NoticeForm = () => {
     };
 
     fetchModeles();
-  }, []);
+  }, [idExp]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -100,7 +108,11 @@ const NoticeForm = () => {
               Sélectionnez un modèle
             </option>
             {modeles.map((m) => (
-              <option className="NoticeForm-option-selection" key={m} value={m}>
+              <option
+                className="NoticeForm-option-selection"
+                key={m.IdMat}
+                value={m}
+              >
                 {m}
               </option>
             ))}

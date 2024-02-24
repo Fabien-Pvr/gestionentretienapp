@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ref, set, push } from "firebase/database";
 import { db } from "../Firebase";
 import { RecupererIdMat, GetAllModeles } from "../Component_queries/queries";
+import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation";
+import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 
 const FormEntretien = () => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Utilisation de la date actuelle
@@ -12,10 +14,16 @@ const FormEntretien = () => {
   const [TypeEntretien, setTypeEntretien] = useState("");
   const [error, setError] = useState("");
 
+  const { currentUser } = useAuth();
+  const idUser = currentUser ? currentUser.uid : null;
+
+  const idExp = useFindUserExploitation(idUser);
+
   useEffect(() => {
     const fetchModeles = async () => {
       try {
-        const modelesList = await GetAllModeles(); // Utilisez votre fonction pour récupérer la liste des modèles
+        const modelesList = await GetAllModeles(idExp);
+        console.log("mod", modelesList); // Utilisez votre fonction pour récupérer la liste des modèles
         setModeles(modelesList);
       } catch (error) {
         console.error(
@@ -26,7 +34,7 @@ const FormEntretien = () => {
     };
 
     fetchModeles();
-  }, []);
+  }, [idExp]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -51,6 +59,7 @@ const FormEntretien = () => {
           NbHeure: NbHeure,
           Observation: Observation,
           TypeEntretien: TypeEntretien,
+          IdExploitation: idExp,
         };
 
         await set(newEntretienRef, entretienData);
@@ -89,7 +98,11 @@ const FormEntretien = () => {
               Sélectionnez un modèle
             </option>
             {modeles.map((m) => (
-              <option className="NoticeForm-option-selection" key={m} value={m}>
+              <option
+                className="NoticeForm-option-selection"
+                key={m.IdMat}
+                value={m}
+              >
                 {m}
               </option>
             ))}

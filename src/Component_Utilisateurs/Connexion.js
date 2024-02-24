@@ -13,6 +13,10 @@ const Connexion = () => {
         email,
         password
       );
+      if (!userCredential.user.emailVerified) {
+        console.log("veuillez vérifier votre email");
+        return;
+      }
       console.log("Connecté :", userCredential.user);
     } catch (error) {
       console.error("Erreur lors de la connexion :", error.message);

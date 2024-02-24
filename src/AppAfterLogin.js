@@ -5,6 +5,7 @@ import "./CSS/App.css";
 import Deconnexion from "./Component_Utilisateurs/Deconnexion";
 import Connexion from "./Component_Utilisateurs/Connexion";
 import Inscription from "./Component_Utilisateurs/Inscription";
+import useGetExploitationData from "./Component_queries/UseGetexploitationData";
 
 // Importez vos composants de page
 import Home from "./Pages/Home";
@@ -24,7 +25,8 @@ function Application() {
           <Head />
         </header>
 
-        <main className="ContainerInit"></main>
+        {/* <main className="ContainerInit">
+        </main> */}
 
         <Footer />
 

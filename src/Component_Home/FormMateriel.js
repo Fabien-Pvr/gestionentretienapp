@@ -3,6 +3,8 @@ import { ref as databaseRef, set, push } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 import { db } from "../Firebase";
 import "../CSS/FormMateriel.css";
+import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation";
+import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 
 const TracteurFormIm = () => {
   const [Modele, setModele] = useState("");
@@ -14,6 +16,11 @@ const TracteurFormIm = () => {
   const [ImageFile, setImageFile] = useState(null);
   const [NomImage, setNomImage] = useState(""); // Utilisé pour stocker l'URL de prévisualisation
   const [error, setError] = useState("");
+
+  const { currentUser } = useAuth();
+  const idUser = currentUser ? currentUser.uid : null;
+
+  const idExp = useFindUserExploitation(idUser);
 
   useEffect(() => {
     // Nettoie l'URL temporaire lors du démontage ou de la mise à jour de NomImage
@@ -62,6 +69,7 @@ const TracteurFormIm = () => {
         MiseService,
         VidangeMoteur,
         NomImage: ImageFile.name, // Stocke le nom de l'image pour la sauvegarde
+        IdExploitation: idExp,
       };
       await set(newTracteurRef, tracteurData);
 

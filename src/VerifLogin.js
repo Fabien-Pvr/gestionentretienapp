@@ -12,7 +12,7 @@ const VerifLogin = () => {
 
   return (
     <div>
-      {currentUser ? (
+      {currentUser && currentUser.emailVerified ? (
         <Application />
       ) : isInscription ? (
         <Inscription />

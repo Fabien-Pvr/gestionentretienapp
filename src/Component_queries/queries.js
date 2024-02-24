@@ -32,6 +32,36 @@ const RecupererIdMat = async (Modele) => {
   }
 };
 
+const RecupererIdExploitation = async (NomExploitation) => {
+  try {
+    const exploitationIdRef = ref(db, "Exploitation");
+    const snapshot = await get(exploitationIdRef);
+    if (snapshot.exists()) {
+      const exploitatoins = snapshot.val();
+      // Recherche du mat correspondant à IdMat
+      const exploitationKeys = Object.keys(exploitatoins);
+      for (const key of exploitationKeys) {
+        const exploitationData = exploitatoins[key];
+        console.log("blebla", exploitationData);
+        console.log("testfinaljenaimarre", exploitationData.IdExploitation);
+        if (exploitationData.NomExploitation === NomExploitation) {
+          console.log("MatDataTest:", exploitationData);
+          const IdExploitation = exploitationData.IdExploitation;
+          console.log("modeleMat", IdExploitation);
+          return IdExploitation;
+        }
+      }
+    }
+    return null;
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des données :",
+      error.message
+    );
+    return null;
+  }
+};
+
 const RecupererModeleMat = async (IdMat) => {
   try {
     const matRef = ref(db, "Materiel");
@@ -101,10 +131,12 @@ const GetListeEntretien = async () => {
       async (EntretienId) => {
         const Entretien = EntretienData[EntretienId];
         const IdMat = Entretien.IdMat;
+        const IdExploitation = Entretien.IdExploitation;
 
         return {
           Entretien: Entretien,
           IdMat: IdMat,
+          IdExploitation: IdExploitation,
         };
       }
     );
@@ -139,16 +171,18 @@ const countElements = async (Element) => {
   }
 };
 
-const GetAllModeles = async () => {
+const GetAllModeles = async (idExp) => {
   try {
     const materielRef = ref(db, "Materiel");
     const snapshot = await get(materielRef);
 
     if (snapshot.exists()) {
-      // Convertir le snapshot en tableau de modèles
-      const modelesArray = Object.values(snapshot.val()).map(
-        (materiel) => materiel.Modele
-      );
+      const modelesArray = Object.values(snapshot.val())
+        // Filtrer pour ne garder que les matériels avec l'IdExploitation correspondant
+        .filter((materiel) => materiel.IdExploitation === idExp)
+        // Mapper pour récupérer uniquement le modèle
+        .map((materiel) => materiel.Modele);
+
       return modelesArray;
     } else {
       console.log("Aucun modèle trouvé dans la base de données.");
@@ -162,7 +196,27 @@ const GetAllModeles = async () => {
     return [];
   }
 };
-
+const GetAllExploitations = async () => {
+  try {
+    const exploitationRef = ref(db, "Exploitation");
+    const snapshot = await get(exploitationRef);
+    if (snapshot.exists()) {
+      const exploitationArray = Object.values(snapshot.val()).map(
+        (exploitation) => exploitation.NomExploitation
+      );
+      return exploitationArray;
+    } else {
+      console.log("Aucune exploitation trouvée dans la base de données.");
+      return [];
+    }
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des exploitations :",
+      error.message
+    );
+    return [];
+  }
+};
 export {
   ListeBesoinEntretien,
   RecupererModeleMat,
@@ -170,4 +224,6 @@ export {
   GetListeEntretien,
   countElements,
   GetAllModeles,
+  GetAllExploitations,
+  RecupererIdExploitation,
 };

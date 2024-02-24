@@ -4,19 +4,30 @@ import { db } from "../Firebase.js";
 import "../CSS/MaterielList.css";
 import BackgroundImageComponent from "../Component_queries/ImageBackgroundComponent.js";
 import { Link } from "react-router-dom";
+import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
+import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation.js";
 
 const MaterielList = () => {
   const [Materiel, setMateriel] = useState([]);
+  const { currentUser } = useAuth();
+  const idUser = currentUser ? currentUser.uid : null;
+
+  const idExp = useFindUserExploitation(idUser);
+
   useEffect(() => {
-    const MaterielRef = ref(db, "Materiel");
-    const unsubscribe = onValue(MaterielRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        setMateriel(Object.values(data));
-      }
-    });
-    return () => unsubscribe();
-  }, []);
+    if (idExp) {
+      // S'assurer que idExp est défini avant de faire la requête
+      const MaterielRef = ref(db, "Materiel");
+      const unsubscribe = onValue(MaterielRef, (snapshot) => {
+        const data = snapshot.val();
+        const filteredData = data
+          ? Object.values(data).filter((mat) => mat.IdExploitation === idExp)
+          : [];
+        setMateriel(filteredData);
+      });
+      return () => unsubscribe();
+    }
+  }, [idExp]); // Ajout de idExp dans le tableau de dépendances pour refaire la requête quand idExp change
 
   return (
     <div>

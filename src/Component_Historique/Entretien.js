@@ -4,11 +4,18 @@ import {
   RecupererModeleMat,
 } from "../Component_queries/queries";
 import "../CSS/Entretien.css";
+import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
+import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation.js";
 
 const GetEntretien = () => {
   const [Entretien, setEntretien] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
 
+  const { currentUser } = useAuth();
+  const idUser = currentUser ? currentUser.uid : null;
+
+  const idExp = useFindUserExploitation(idUser);
+  // Supposez que vous avez l'IdExploitation disponible ici, soit par un hook, soit par les props
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,8 +28,14 @@ const GetEntretien = () => {
           return;
         }
 
+        // Filtrer les entretiens par IdExploitation avant de les traiter
+        console.log("idExp", idExp);
+        const filteredEntretiens = GetEntretienData.filter(
+          (entretien) => entretien.IdExploitation === idExp
+        );
+        console.log("filtre", filteredEntretiens);
         const newData = await Promise.all(
-          GetEntretienData.map(async (GetEntretien) => {
+          filteredEntretiens.map(async (GetEntretien) => {
             const IdMat = GetEntretien.IdMat;
             const matData = await RecupererModeleMat(IdMat);
 
@@ -54,15 +67,10 @@ const GetEntretien = () => {
     };
 
     fetchData();
-  }, []);
+  }, [idExp]); // Ajoutez idExp dans les dépendances si elle est dynamique
+
   const handleItemClick = (id) => {
-    if (selectedId === id) {
-      // Si l'élément cliqué est déjà sélectionné, le désélectionner
-      setSelectedId(null);
-    } else {
-      // Sinon, définir cet élément comme sélectionné
-      setSelectedId(id);
-    }
+    setSelectedId((prevId) => (prevId === id ? null : id));
   };
 
   return (
