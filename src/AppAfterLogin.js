@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { auth } from "./Firebase";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./CSS/App.css";
-import Deconnexion from "./Component_Utilisateurs/Deconnexion";
-import Connexion from "./Component_Utilisateurs/Connexion";
 import Inscription from "./Component_Utilisateurs/Inscription";
-import useGetExploitationData from "./Component_queries/UseGetexploitationData";
+import Connexion from "./Component_Utilisateurs/Connexion";
 
 // Importez vos composants de page
 import Home from "./Pages/Home";
@@ -35,6 +33,8 @@ function Application() {
           <Route path="/ajout/*" element={<Ajout />} />
           <Route path="/historique/*" element={<Historique />} />
           <Route path="/parametres/*" element={<Parametres />} />
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/connexion" element={<Connexion />} />
         </Routes>
       </div>
     </Router>

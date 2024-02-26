@@ -1,0 +1,83 @@
+.connexion-page {
+  /* background-color: #fbfff0; */
+  /* height: 100vh; */
+  /* position: fixed; */
+}
+
+.connexion-div-logo {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+}
+
+h2 {
+  text-align: center;
+  color: #283943;
+}
+
+.connexion-logo {
+  width: 100%;
+}
+
+.connexion-div-input {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 60px 46px 68px;
+  align-items: center; /* Aligner les éléments au centre horizontalement */
+  gap: 30px;
+}
+
+.connexion-label {
+  display: flex; /* Utiliser flexbox pour positionner l'icône à côté de l'input */
+  border-bottom: 1px solid black; /* Bordure du bas pour l'input */
+  width: 100%;
+  margin: 20px 0px;
+}
+
+input {
+  background-color: #fbfff0;
+  border: none;
+  outline: none;
+  width: 100%;
+  /* height: 25px; */
+  padding-left: 20px; /* Ajuster le padding pour ne pas écrire sur l'icône */
+}
+
+.connexion-icon {
+  height: 30px; /* Hauteur de l'icône */
+  margin-right: 7px;
+  margin-bottom: 3px;
+}
+
+.connexion-position-buttons {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-evenly;
+  /* padding-top: 10%; */
+}
+
+.connexion-button-co {
+  display: flex;
+  justify-content: center;
+}
+
+.button-co {
+  width: 289px;
+  height: 43px;
+  border-radius: 19px;
+  background: #577d5f;
+}
+
+.connexion-button-insc {
+  display: flex;
+  justify-content: center;
+}
+
+.button-insc {
+  width: 289px;
+  height: 43px;
+  color: black;
+  border-radius: 19px;
+  background: #d7d7d7;
+}

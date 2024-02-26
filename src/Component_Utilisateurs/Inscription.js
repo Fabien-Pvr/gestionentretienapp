@@ -8,6 +8,11 @@ import {
 import { ref, set, onValue } from "firebase/database";
 import { GetAllExploitations } from "../Component_queries/queries";
 import { Navigate } from "react-router-dom";
+import logo from "../image/LogoP2I.svg"; // Assurez-vous que le chemin d'accès est correct
+import iconprofil from "../image/icon-profil.png";
+import iconLock from "../image/icon-Lock.png";
+import iconMail from "../image/icon-mail.png";
+import "../CSS/Inscription.css";
 
 const Inscription = () => {
   const [email, setEmail] = useState("");
@@ -101,52 +106,67 @@ const Inscription = () => {
   };
 
   return (
-    <div>
-      <h2>Inscription</h2>
-      <form onSubmit={signUp}>
+    <div className="inscription-page">
+      <div className="inscription-div-logo">
+        <img src={logo} className="inscription-logo" alt="logo" />
+      </div>
+      <form className="form-Inscription" onSubmit={signUp}>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Mot de passe"
-          required
-        />
-        <input
-          type="text"
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-          placeholder="Nom d'utilisateur"
-          required
-        />
-        <div>
-          <label className="FormMenuDel">
-            <select
-              className="NoticeForm-selection-format"
-              // value={modele}
-              onChange={(e) => setExploitation(e.target.value)}
-            >
-              <option value="">Sélectionnez un modèle</option>
-              {exploitations.map((exp) => (
-                <option
-                  className="NoticeForm-option-selection"
-                  key={exp}
-                  // value={m}
-                >
-                  {exp}
-                </option>
-              ))}
-            </select>
+        <div className="inscription-div-input">
+          <label className="inscription-label">
+            <img src={iconMail} className="inscription-icon" alt="Icon" />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
           </label>
+          <label className="inscription-label">
+            <img src={iconLock} className="inscription-icon" alt="Icon" />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Mot de passe"
+              required
+            />
+          </label>
+          <label className="inscription-label">
+          <img src={iconprofil} className="inscription-icon" alt="Icon" />
+            <input
+              type="text"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder="Nom d'utilisateur"
+              required
+            />
+          </label>
+
+          <div>
+            <label className="InscriptionMenuDel">
+              <select
+                className="Inscription-selection-format"
+                onChange={(e) => setExploitation(e.target.value)}
+              >
+                <option value="">Sélectionnez une exploitation</option>
+                {exploitations.map((exp) => (
+                  <option className="Inscription-option-selection" key={exp}>
+                    {exp}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
-        <button type="submit">S'inscrire</button>
+        <div className="connexion-position-buttons">
+          <div className="connexion-button-co">
+            <button className="button-co" type="submit">
+              S'inscrire
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

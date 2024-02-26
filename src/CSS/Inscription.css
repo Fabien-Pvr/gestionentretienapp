@@ -1,0 +1,105 @@
+.inscription-page {
+  /* background-color: #fbfff0; */
+  /* height: 100vh; */
+  /* position: fixed; */
+}
+
+.inscription-div-logo {
+  display: flex;
+  justify-content: center;
+  height: 230px;
+}
+
+.inscription-logo {
+  width: 100%;
+}
+
+.inscription-div-input {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 60px 46px 68px;
+  align-items: center; /* Aligner les éléments au centre horizontalement */
+  gap: 20px;
+}
+
+.inscription-label {
+  display: flex; /* Utiliser flexbox pour positionner l'icône à côté de l'input */
+  border-bottom: 1px solid black; /* Bordure du bas pour l'input */
+  width: 100%;
+  margin: 20px 0px;
+}
+
+input {
+  background-color: #fbfff0;
+  border: none;
+  outline: none;
+  width: 100%;
+  /* height: 25px; */
+  padding-left: 20px; /* Ajuster le padding pour ne pas écrire sur l'icône */
+}
+
+.inscription-icon {
+  height: 30px; /* Hauteur de l'icône */
+  margin-right: 7px;
+  margin-bottom: 3px;
+}
+
+.inscription-position-buttons {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-evenly;
+  /* padding-top: 10%; */
+}
+
+.inscription-button-co {
+  display: flex;
+  justify-content: center;
+}
+
+.button-co {
+  width: 289px;
+  height: 43px;
+  border-radius: 19px;
+  background: #577d5f;
+}
+
+.inscription-button-insc {
+  display: flex;
+  justify-content: center;
+}
+
+.button-insc {
+  width: 289px;
+  height: 43px;
+  color: black;
+  border-radius: 19px;
+  background: #d7d7d7;
+}
+
+.InscriptionMenuDel {
+  display: flex;
+  padding: 10px 0px;
+  background-color: #fbfff0;
+  cursor: pointer;
+  gap: 20px;
+}
+
+.Inscription-selection-format {
+  padding: 2px;
+  border: none;
+  border-radius: 2px;
+  font-size: medium;
+  font-style: italic;
+  background: #fbfff0;
+  font-style: italic;
+  font-size: 15px;
+}
+
+.Inscription-option-selection {
+  font-size: 15px;
+}
+
+.form-Inscription {
+  padding-bottom: 0%;
+}
