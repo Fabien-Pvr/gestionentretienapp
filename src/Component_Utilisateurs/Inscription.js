@@ -22,7 +22,7 @@ const Inscription = () => {
   const [exploitation, setExploitation] = useState("");
   const [error, setError] = useState("");
   const [userId, setUserId] = useState("");
-
+  const [radioValue, setRadioValue] = useState("");
   useEffect(() => {
     const fetchExploitation = async () => {
       try {
@@ -104,6 +104,18 @@ const Inscription = () => {
       setError(error.message);
     }
   };
+  const handleRadioClick = (value) => {
+    // Si l'utilisateur clique sur le bouton radio déjà sélectionné, déselectionne-le
+    if (radioValue === value) {
+      setRadioValue("");
+    } else {
+      setRadioValue(value);
+      // Navigation si "Créer mon exploitation" est sélectionné
+      if (value === "createExploitation") {
+        // Navigate("../composent_exploitation/FormExploitation");
+      }
+    }
+  };
 
   return (
     <div className="inscription-page">
@@ -134,7 +146,7 @@ const Inscription = () => {
             />
           </label>
           <label className="inscription-label">
-          <img src={iconprofil} className="inscription-icon" alt="Icon" />
+            <img src={iconprofil} className="inscription-icon" alt="Icon" />
             <input
               type="text"
               value={displayName}
@@ -143,25 +155,52 @@ const Inscription = () => {
               required
             />
           </label>
-
-          <div>
-            <label className="InscriptionMenuDel">
-              <select
-                className="Inscription-selection-format"
-                onChange={(e) => setExploitation(e.target.value)}
-              >
-                <option value="">Sélectionnez une exploitation</option>
-                {exploitations.map((exp) => (
-                  <option className="Inscription-option-selection" key={exp}>
-                    {exp}
-                  </option>
-                ))}
-              </select>
+          <div className="Inscription-radioInput-global">
+            <label className="Inscription-radioInput">
+              <input
+                className="Inscription-radioInput-input"
+                type="radio"
+                name="exploitationChoice"
+                value="selectExploitation"
+                checked={radioValue === "selectExploitation"}
+                onClick={() => handleRadioClick("selectExploitation")}
+                readOnly
+              />
+              Sélectionnez une exploitation
             </label>
+            {radioValue !== "selectExploitation" && (
+              <label className="Inscription-radioInput">
+                <input
+                  className="Inscription-radioInput-input"
+                  type="radio"
+                  name="exploitationChoice"
+                  value="createExploitation"
+                  checked={radioValue === "createExploitation"}
+                  onClick={() => handleRadioClick("createExploitation")}
+                  readOnly
+                />
+                Créer mon exploitation
+              </label>
+            )}
           </div>
+          {radioValue === "selectExploitation" && (
+            <div>
+              <label className="InscriptionMenuDel">
+                <select
+                  className="Inscription-selection-format"
+                  onChange={(e) => setExploitation(e.target.value)}
+                >
+                  <option value="">Sélectionnez une exploitation</option>
+                  {exploitations.map((exp) => (
+                    <option key={exp}>{exp}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          )}
         </div>
-        <div className="connexion-position-buttons">
-          <div className="connexion-button-co">
+        <div className="inscription-position-buttons">
+          <div className="inscription-button-co">
             <button className="button-co" type="submit">
               S'inscrire
             </button>

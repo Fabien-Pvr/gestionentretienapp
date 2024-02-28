@@ -1,9 +1,3 @@
-.inscription-page {
-  /* background-color: #fbfff0; */
-  /* height: 100vh; */
-  /* position: fixed; */
-}
-
 .inscription-div-logo {
   display: flex;
   justify-content: center;
@@ -47,9 +41,9 @@ input {
 .inscription-position-buttons {
   display: flex;
   flex-direction: column;
-  height: 150px;
+  /* height: 150px; */
   justify-content: space-evenly;
-  /* padding-top: 10%; */
+  margin-top: 5%;
 }
 
 .inscription-button-co {
@@ -102,4 +96,19 @@ input {
 
 .form-Inscription {
   padding-bottom: 0%;
+}
+
+.Inscription-radioInput-global {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Inscription-radioInput {
+  display: flex;
+  font-style: italic;
+  color: rgb(126, 126, 126);
+}
+.Inscription-radioInput-input {
+  width: 40px;
 }
