@@ -52,10 +52,10 @@ input {
 .connexion-position-buttons {
   display: flex;
   flex-direction: column;
-  /* height: 150px; */
-  margin-top: 100px;
+  margin-top: 50px;
   justify-content: space-evenly;
-  /* padding-top: 10%; */
+  align-items: center;
+  gap: 30px;
 }
 
 .connexion-button-co {
@@ -63,19 +63,20 @@ input {
   justify-content: center;
 }
 
-.button-co {
+.button-prim {
   width: 289px;
   height: 43px;
   border-radius: 19px;
   background: #577d5f;
 }
 
-.connexion-button-insc {
+/* .connexion-button-insc {
   display: flex;
   justify-content: center;
-}
+  align-items: center;
+} */
 
-.button-insc {
+.button-sec {
   width: 289px;
   height: 43px;
   color: black;

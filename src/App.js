@@ -1,29 +1,70 @@
-import React, { useState, useEffect } from "react";
-import { auth } from "./Firebase";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import "./CSS/App.css";
-import Deconnexion from "./Component_Utilisateurs/Deconnexion";
+
 import Connexion from "./Component_Utilisateurs/Connexion";
 import Inscription from "./Component_Utilisateurs/Inscription";
-import Application from "./AppAfterLogin";
-
-// Importez vos composants de page
 import Home from "./Pages/Home";
 import Ajout from "./Pages/Ajout";
 import Historique from "./Pages/Historique";
 import Parametres from "./Pages/Parametres";
-// import Entretien from "./Pages/Entretien"; // Assurez-vous d'avoir un composant pour la page Entretien
+import { useAuth } from "./Component_Utilisateurs/AuthContext";
+import Layout from "./Component_App/Layout"; 
+import Exploitation from "./composant_exploitation/Exploitation";
 
-import Footer from "./Component_App/Footer";
-import Head from "./Component_App/Head";
-import { AuthProvider } from "./Component_Utilisateurs/AuthContext";
-import VerifLogin from "./VerifLogin";
+function ProtectedRoute({ children }) {
+  const { currentUser } = useAuth();
+  return currentUser ? children : <Navigate to="/connexion" />;
+}
 
 function App() {
   return (
-    <AuthProvider>
-      <VerifLogin />
-    </AuthProvider>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/connexion" element={<Connexion />} />
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/exploitation" element={<Exploitation />} />
+          <Route
+            path="/home/*"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ajout/*"
+            element={
+              <ProtectedRoute>
+                <Ajout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/historique/*"
+            element={
+              <ProtectedRoute>
+                <Historique />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/parametres/*"
+            element={
+              <ProtectedRoute>
+                <Parametres />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 

@@ -1,21 +1,4 @@
-// import React from "react";
-// import { useAuth } from "./Component_Utilisateurs/AuthContext";
-// import Connexion from "./Component_Utilisateurs/Connexion";
-// import Application from "./AppAfterLogin"; // Le composant de la partie sécurisée de votre application
 
-// const VerifLogin = () => {
-//   const { currentUser } = useAuth();
-
-//   if (currentUser && currentUser.emailVerified) {
-//     return <Application />;
-//   } else {
-//     return <Connexion />;
-//   }
-// };
-
-// export default VerifLogin;
-
-// MaPage.js
 
 import React, { useState } from "react";
 import { useAuth } from "./Component_Utilisateurs/AuthContext";

@@ -6,28 +6,42 @@ import BackgroundImageComponent from "../Component_queries/ImageBackgroundCompon
 import { Link } from "react-router-dom";
 import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation.js";
+import useGetExploitationData from "../Component_queries/UseGetexploitationData.js";
 
 const MaterielList = () => {
   const [Materiel, setMateriel] = useState([]);
   const { currentUser } = useAuth();
   const idUser = currentUser ? currentUser.uid : null;
+  console.log("iduser", idUser);
 
   const idExp = useFindUserExploitation(idUser);
+  console.log("idExp", idExp);
+
+  const dataExploitataion = useGetExploitationData(idExp);
+  console.log("dataexp", dataExploitataion);
+  console.log(dataExploitataion.exploitationInfo);
 
   useEffect(() => {
-    if (idExp) {
-      // S'assurer que idExp est défini avant de faire la requête
+    console.log("blabla");
+    if (idExp && dataExploitataion.exploitationInfo) {
       const MaterielRef = ref(db, "Materiel");
       const unsubscribe = onValue(MaterielRef, (snapshot) => {
         const data = snapshot.val();
+        console.log("data", data);
         const filteredData = data
-          ? Object.values(data).filter((mat) => mat.IdExploitation === idExp)
+          ? Object.values(data).filter(
+              (mat) =>
+                mat.IdExploitation ===
+                dataExploitataion.exploitationInfo.IdExploitation
+            )
           : [];
+        console.log("fdata", filteredData);
+
         setMateriel(filteredData);
       });
       return () => unsubscribe();
     }
-  }, [idExp]); // Ajout de idExp dans le tableau de dépendances pour refaire la requête quand idExp change
+  }, [idExp, dataExploitataion.exploitationInfo]);
 
   return (
     <div>

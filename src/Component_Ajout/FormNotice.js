@@ -4,6 +4,7 @@ import { db } from "../Firebase";
 import { RecupererIdMat, GetAllModeles } from "../Component_queries/queries";
 import "../CSS/FormNotice_Entretien.css";
 import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation";
+import useGetExploitationData from "../Component_queries/UseGetexploitationData.js";
 import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 
 const NoticeForm = () => {
@@ -21,11 +22,13 @@ const NoticeForm = () => {
   const idUser = currentUser ? currentUser.uid : null;
 
   const idExp = useFindUserExploitation(idUser);
-
+  const dataExploitataion = useGetExploitationData(idExp);
   useEffect(() => {
     const fetchModeles = async () => {
       try {
-        const modelesList = await GetAllModeles(idExp);
+        const modelesList = await GetAllModeles(
+          dataExploitataion.exploitationInfo.IdExploitation
+        );
         console.log("test liste", modelesList); // Utilisez votre fonction pour récupérer la liste des modèles
         setModeles(modelesList);
       } catch (error) {

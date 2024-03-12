@@ -3,6 +3,7 @@ import { ref, set, push } from "firebase/database";
 import { db } from "../Firebase";
 import { RecupererIdMat, GetAllModeles } from "../Component_queries/queries";
 import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation";
+import useGetExploitationData from "../Component_queries/UseGetexploitationData.js";
 import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 
 const FormEntretien = () => {
@@ -18,11 +19,11 @@ const FormEntretien = () => {
   const idUser = currentUser ? currentUser.uid : null;
 
   const idExp = useFindUserExploitation(idUser);
-
+  const dataExploitataion = useGetExploitationData(idExp);
   useEffect(() => {
     const fetchModeles = async () => {
       try {
-        const modelesList = await GetAllModeles(idExp);
+        const modelesList = await GetAllModeles(dataExploitataion.exploitationInfo.IdExploitation);
         console.log("mod", modelesList); // Utilisez votre fonction pour récupérer la liste des modèles
         setModeles(modelesList);
       } catch (error) {
@@ -34,7 +35,7 @@ const FormEntretien = () => {
     };
 
     fetchModeles();
-  }, [idExp]);
+  }, [dataExploitataion.exploitationInfo.IdExploitation]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +60,7 @@ const FormEntretien = () => {
           NbHeure: NbHeure,
           Observation: Observation,
           TypeEntretien: TypeEntretien,
-          IdExploitation: idExp,
+          IdExploitation: dataExploitataion.exploitationInfo.IdExploitation,
         };
 
         await set(newEntretienRef, entretienData);
