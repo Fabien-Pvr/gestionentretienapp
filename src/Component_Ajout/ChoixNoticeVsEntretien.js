@@ -4,7 +4,7 @@ import "../CSS/ChoixMaterielNouveau.css";
 import { useState } from "react";
 
 const ChoixMaterielNouveau = () => {
-  const [activePage, setActivePage] = useState("notice"); // Par défaut, "Matériel" est la page active
+  const [activePage, setActivePage] = useState("notice"); 
 
   const handleClick = (page) => {
     setActivePage(page);
@@ -25,6 +25,13 @@ const ChoixMaterielNouveau = () => {
         onClick={() => handleClick("entretien")}
       >
         Entretien
+      </Link>
+      <Link
+        to="/ajout/materiel"
+        className={activePage === "materiel" ? "nomActive" : "nomUnactive"}
+        onClick={() => handleClick("materiel")}
+      >
+        Materiel
       </Link>
     </div>
   );

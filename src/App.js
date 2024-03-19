@@ -14,8 +14,9 @@ import Ajout from "./Pages/Ajout";
 import Historique from "./Pages/Historique";
 import Parametres from "./Pages/Parametres";
 import { useAuth } from "./Component_Utilisateurs/AuthContext";
-import Layout from "./Component_App/Layout"; 
+import Layout from "./Component_App/Layout";
 import Exploitation from "./composant_exploitation/Exploitation";
+import Notice from "./Pages/Notice";
 
 function ProtectedRoute({ children }) {
   const { currentUser } = useAuth();
@@ -59,6 +60,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Parametres />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notice"
+            element={
+              <ProtectedRoute>
+                <Notice />
               </ProtectedRoute>
             }
           />

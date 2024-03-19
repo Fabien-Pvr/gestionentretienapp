@@ -7,8 +7,8 @@ import useGetExploitationData from "../Component_queries/UseGetexploitationData.
 import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 
 const FormEntretien = () => {
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Utilisation de la date actuelle
-  const [modele, setModele] = useState(""); // Ajout du champ pour le modèle
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const [modele, setModele] = useState("");
   const [modeles, setModeles] = useState([]);
   const [NbHeure, setNbHeure] = useState("");
   const [Observation, setObservation] = useState("");
@@ -23,9 +23,17 @@ const FormEntretien = () => {
   useEffect(() => {
     const fetchModeles = async () => {
       try {
-        const modelesList = await GetAllModeles(dataExploitataion.exploitationInfo.IdExploitation);
-        console.log("mod", modelesList); // Utilisez votre fonction pour récupérer la liste des modèles
-        setModeles(modelesList);
+        if (
+          dataExploitataion &&
+          dataExploitataion.exploitationInfo &&
+          dataExploitataion.exploitationInfo.IdExploitation
+        ) {
+          const modelesList = await GetAllModeles(
+            dataExploitataion.exploitationInfo.IdExploitation
+          );
+          console.log("mod", modelesList);
+          setModeles(modelesList);
+        }
       } catch (error) {
         console.error(
           "Erreur lors de la récupération des modèles :",
@@ -34,13 +42,14 @@ const FormEntretien = () => {
       }
     };
 
-    fetchModeles();
-  }, [dataExploitataion.exploitationInfo.IdExploitation]);
+    if (idExp) {
+      fetchModeles();
+    }
+  }, [idExp, dataExploitataion]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // Vérifications du type de données
     if (isNaN(Number(NbHeure))) {
       setError("NbHeure doit être un nombre.");
       return;
@@ -51,12 +60,12 @@ const FormEntretien = () => {
 
       if (idMat) {
         const entretienRef = ref(db, "Entretien");
-        const newEntretienRef = push(entretienRef); // Utilisation de push pour générer automatiquement la clé
+        const newEntretienRef = push(entretienRef);
 
         const entretienData = {
           IdEntretien: newEntretienRef.key,
           Date: date,
-          IdMat: idMat, // Utiliser l'IDmat récupéré
+          IdMat: idMat,
           NbHeure: NbHeure,
           Observation: Observation,
           TypeEntretien: TypeEntretien,
@@ -68,12 +77,12 @@ const FormEntretien = () => {
         console.log(
           "Entretien enregistré avec succès dans la base de données."
         );
-        setDate(new Date().toISOString().split("T")[0]); // Réinitialiser la date à la date actuelle
+        setDate(new Date().toISOString().split("T")[0]);
         setModele("");
         setNbHeure("");
         setObservation("");
         setTypeEntretien("");
-        setError(""); // Effacer les erreurs si la soumission est réussie
+        setError("");
       } else {
         setError(`Aucun IDmat trouvé pour le modèle ${modele}.`);
       }
@@ -122,7 +131,7 @@ const FormEntretien = () => {
 
         <label className="LabelForm">
           <input
-            type="date" // Utilisation du type 'date' pour le champ de date
+            type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required

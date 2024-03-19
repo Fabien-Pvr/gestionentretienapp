@@ -4,47 +4,48 @@ import "../CSS/MaterielList.css";
 import useGetMaterielData from "./UseGetMaterielData.js";
 import MaterielByID from "./MaterielID.js";
 import BesoinEntretienID from "./BesoinEntretienByIDMat.js";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { red } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
+import useGetNoticeByIdMat from "../Component_queries/useNoticeDataByIdMat.js";
 
 const VehicleDetails = () => {
   const { vehicleId } = useParams();
-  console.log("vehicule", vehicleId);
   const valueMateriel = useGetMaterielData({ vehicleId });
-  console.log("value", valueMateriel);
-
-  // Ajoutez une vérification pour s'assurer que materielInfo n'est pas null
+  const notices = useGetNoticeByIdMat(vehicleId) || []; 
   const materielInfo = valueMateriel.materielInfo;
+
+  const navigate = useNavigate();
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("fr-FR");
   };
 
+  const HandleClickNotice = (IdBesoinEntretien) => {
+    navigate("/notice", {
+      state: { materielId: vehicleId, noticeId: IdBesoinEntretien },
+    });
+  };
+
   return (
     <ul className="containerAll">
-      <div>
-        <BorderColorIcon className="Modification" />
-        <DeleteOutlineIcon sx={{ color: "red" }} className="Suppression" />
-      </div>
       <MaterielByID materielId={vehicleId} />
       <div className="TexteDetail">
-        {console.log("test", materielInfo)}
         {materielInfo && (
           <>
             <p>Mise en service le : {formatDate(materielInfo.MiseService)}</p>
-            <p>
-              Première vidange moteur effectuée à : {materielInfo.VidangeMoteur}{" "}
-              heures
-            </p>
+            <p>Première vidange moteur effectuée à : {materielInfo.VidangeMoteur} heures</p>
           </>
         )}
       </div>
       <div className="Titre">Notices disponible</div>
-      <BesoinEntretienID materielId={vehicleId} />
+      {notices && notices.map((item) => (
+        item && <div key={item.IdBesoinEntretien} onClick={() => HandleClickNotice(item.IdBesoinEntretien)}>
+          <BesoinEntretienID notice={item} />
+        </div>
+      ))}
     </ul>
   );
 };
+
 
 export default VehicleDetails;

@@ -3,6 +3,7 @@ import {
   GetListeEntretien,
   RecupererModeleMat,
 } from "../Component_queries/queries";
+import useGetExploitationData from "../Component_queries/UseGetexploitationData.js";
 import "../CSS/Entretien.css";
 import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation.js";
@@ -15,34 +16,34 @@ const GetEntretien = () => {
   const idUser = currentUser ? currentUser.uid : null;
 
   const idExp = useFindUserExploitation(idUser);
-  // Supposez que vous avez l'IdExploitation disponible ici, soit par un hook, soit par les props
+  const dataExploitataion = useGetExploitationData(idExp);
+
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
+  const fetchData = async () => {
+    try {
+      // Assurez-vous que les données de l'exploitation sont chargées
+      if (dataExploitataion && dataExploitataion.exploitationInfo) {
         const GetEntretienData = await GetListeEntretien();
         console.log("GetEntretienData", GetEntretienData);
         if (!GetEntretienData || !Array.isArray(GetEntretienData)) {
-          console.error(
-            "GetListeEntretien n'a pas renvoyé de données valides."
-          );
+          console.error("GetListeEntretien n'a pas renvoyé de données valides.");
           return;
         }
 
-        // Filtrer les entretiens par IdExploitation avant de les traiter
         console.log("idExp", idExp);
         const filteredEntretiens = GetEntretienData.filter(
-          (entretien) => entretien.IdExploitation === idExp
+          (entretien) => entretien.IdExploitation === dataExploitataion.exploitationInfo.IdExploitation
         );
         console.log("filtre", filteredEntretiens);
+
         const newData = await Promise.all(
           filteredEntretiens.map(async (GetEntretien) => {
             const IdMat = GetEntretien.IdMat;
             const matData = await RecupererModeleMat(IdMat);
 
             // Convertir la date de string à objet Date
-            const formattedDate = new Date(
-              GetEntretien.Entretien.Date
-            ).toLocaleDateString("fr-FR");
+            const formattedDate = new Date(GetEntretien.Entretien.Date).toLocaleDateString("fr-FR");
 
             return {
               GetEntretien: {
@@ -56,18 +57,20 @@ const GetEntretien = () => {
             };
           })
         );
+
         console.log("newData", newData);
         setEntretien(newData);
-      } catch (error) {
-        console.error(
-          "Erreur lors de la récupération des besoins d'entretien :",
-          error
-        );
       }
-    };
+    } catch (error) {
+      console.error("Erreur lors de la récupération des besoins d'entretien :", error);
+    }
+  };
 
+  if (idExp) {
     fetchData();
-  }, [idExp]); // Ajoutez idExp dans les dépendances si elle est dynamique
+  }
+}, [idExp, dataExploitataion]); // Ajouter dataExploitataion dans les dépendances pour recharger les données si elles changent
+
 
   const handleItemClick = (id) => {
     setSelectedId((prevId) => (prevId === id ? null : id));

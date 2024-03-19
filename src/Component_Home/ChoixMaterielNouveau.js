@@ -19,13 +19,13 @@ const ChoixMaterielNouveau = () => {
       >
         Matériel
       </Link>
-      <Link
+      {/* <Link
         to="/home/nouveau"
         className={activePage === "nouveau" ? "nomActive" : "nomUnactive"}
         onClick={() => handleClick("nouveau")}
       >
         Nouveau
-      </Link>
+      </Link> */}
     </div>
   );
 };

@@ -26,11 +26,12 @@ const NoticeForm = () => {
   useEffect(() => {
     const fetchModeles = async () => {
       try {
-        const modelesList = await GetAllModeles(
-          dataExploitataion.exploitationInfo.IdExploitation
-        );
-        console.log("test liste", modelesList); // Utilisez votre fonction pour récupérer la liste des modèles
-        setModeles(modelesList);
+        if (dataExploitataion && dataExploitataion.exploitationInfo) {
+          const modelesList = await GetAllModeles(
+            dataExploitataion.exploitationInfo.IdExploitation
+          );
+          setModeles(modelesList);
+        }
       } catch (error) {
         console.error(
           "Erreur lors de la récupération des modèles :",
@@ -39,8 +40,10 @@ const NoticeForm = () => {
       }
     };
 
-    fetchModeles();
-  }, [idExp]);
+    if (idExp) {
+      fetchModeles();
+    }
+  }, [idExp, dataExploitataion]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();

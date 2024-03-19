@@ -8,7 +8,8 @@ const Layout = ({ children }) => {
   const showHeaderAndFooter =
     location.pathname !== "/connexion" &&
     location.pathname !== "/inscription" &&
-    location.pathname !== "/exploitation";
+    location.pathname !== "/exploitation" &&
+    location.pathname !== "/notice";
 
   return (
     <div className="App">
