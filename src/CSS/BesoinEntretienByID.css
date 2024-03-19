@@ -81,6 +81,9 @@
 }
 .Notice_ModVehicule {
   color: #577d5f;
+  width: 100%;
+  text-align: center;
+  margin-right: -34px;
 }
 
 .Notice_typeEntretien {
@@ -92,4 +95,3 @@
   line-height: 24px;
   letter-spacing: 0.15px;
 }
-

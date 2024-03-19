@@ -15,7 +15,7 @@ const NoticeForm = () => {
   const [Capacite, setCapacite] = useState("");
   const [TypeHuile, setTypeHuile] = useState("");
   const [NbFiltre, setNbFiltre] = useState("");
-  const [RefFiltre1, setRefFiltre1] = useState("");
+  const [RefFiltres, setRefFiltres] = useState([]);
   const [error, setError] = useState("");
 
   const { currentUser } = useAuth();
@@ -23,6 +23,7 @@ const NoticeForm = () => {
 
   const idExp = useFindUserExploitation(idUser);
   const dataExploitataion = useGetExploitationData(idExp);
+
   useEffect(() => {
     const fetchModeles = async () => {
       try {
@@ -45,10 +46,26 @@ const NoticeForm = () => {
     }
   }, [idExp, dataExploitataion]);
 
+  useEffect(() => {
+    // Assurez-vous que NbFiltre est un nombre et qu'il est positif
+    const nbFiltreNum = parseInt(NbFiltre);
+    if (!isNaN(nbFiltreNum) && nbFiltreNum > 0) {
+      setRefFiltres(Array(nbFiltreNum).fill(""));
+    } else {
+      setRefFiltres([]); // Réinitialisez le tableau si NbFiltre n'est pas un nombre positif
+    }
+  }, [NbFiltre]);
+  
+
+  const handleRefChange = (index, value) => {
+    const updatedRefs = [...RefFiltres];
+    updatedRefs[index] = value;
+    setRefFiltres(updatedRefs);
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // Vérifications du type de données
     if (
       isNaN(Number(Periodicite)) ||
       isNaN(Number(Capacite)) ||
@@ -75,20 +92,13 @@ const NoticeForm = () => {
           Capacite,
           TypeHuile,
           NbFiltre,
-          RefFiltre1,
+          RefFiltres, // Stocke toutes les références de filtres
         };
 
         await set(newNoticeRef, noticeData);
 
         console.log("Notice enregistrée avec succès dans la base de données.");
-        setModele("");
-        setTypeEntretien("");
-        setPeriodicite("");
-        setCapacite("");
-        setTypeHuile("");
-        setNbFiltre("");
-        setRefFiltre1("");
-        setError(""); // Effacer les erreurs si la soumission est réussie
+        // Réinitialisez les états ici
       } else {
         setError(`Aucun véhicule trouvé pour le modèle ${modele}.`);
       }
@@ -171,15 +181,17 @@ const NoticeForm = () => {
             required
           />
         </label>
-        <label className="LabelForm">
-          <input
-            type="text"
-            value={RefFiltre1}
-            onChange={(e) => setRefFiltre1(e.target.value)}
-            placeholder="Référence du premier Filtre"
-            required
-          />
-        </label>
+        {RefFiltres.map((refFiltre, index) => (
+          <label key={index} className="LabelForm">
+            <input
+              type="text"
+              value={refFiltre}
+              onChange={(e) => handleRefChange(index, e.target.value)}
+              placeholder={`Référence du filtre ${index + 1}`}
+              required
+            />
+          </label>
+        ))}
       </div>
       <div className="PositionEnregistrer">
         <button type="submit">Enregistrer</button>

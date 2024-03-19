@@ -31,7 +31,7 @@ const FormEntretien = () => {
           const modelesList = await GetAllModeles(
             dataExploitataion.exploitationInfo.IdExploitation
           );
-          console.log("mod", modelesList);
+
           setModeles(modelesList);
         }
       } catch (error) {

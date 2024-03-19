@@ -3,25 +3,26 @@ import { db } from "../Firebase";
 import { ref, onValue } from "firebase/database";
 import { useLocation } from "react-router-dom";
 import RetourArriere from "../Component_App/RetourArriere";
-import Head from "../Component_App/Head";
 import MenuOverlay from "../Component_Notice/ParametreNotice";
-import useGetNoticeByIdMat from "../Component_queries/useNoticeDataByIdMat.js";
+import { RecupererModeleMat } from "../Component_queries/queries.js";
 
 const Notice = () => {
   const [besoinsEntretien, setBesoinsEntretien] = useState([]);
   const [IdNotice, setIdNotice] = useState("");
+  const [modeleMat, setModeleMat] = useState(""); // État pour stocker le modèle du matériel
   const location = useLocation();
   const materielId = location.state?.materielId;
   const noticeId = location.state?.noticeId;
-  const table = "BesoinEntretien";
 
   useEffect(() => {
     if (materielId) {
+      // Appel asynchrone pour récupérer le modèle du matériel
+      RecupererModeleMat(materielId).then(setModeleMat).catch(console.error);
+
       const BesoinEntretienByIDRef = ref(db, "BesoinEntretien");
 
       const unsubscribe = onValue(BesoinEntretienByIDRef, (snapshot) => {
         const data = snapshot.val();
-        console.log(materielId, noticeId);
         if (data) {
           const filteredData = Object.values(data).filter(
             (besoinEntretien) =>
@@ -32,9 +33,12 @@ const Notice = () => {
           setIdNotice(filteredData[0]?.IdBesoinEntretien);
         }
       });
+
       return () => unsubscribe();
     }
-  }, [materielId]);
+  }, [materielId, noticeId]);
+
+
   return (
     <div>
       <div className="Notice_head">
@@ -44,9 +48,9 @@ const Notice = () => {
       {besoinsEntretien.map((notice) => (
         <div key={notice.IdBesoinEntretien}>
           <div className="Notice_ModVehicule_Menu">
-            <p className="Notice_ModVehicule">{notice.IdMat}</p>
+            <p className="Notice_ModVehicule">{modeleMat}</p>
             <MenuOverlay
-              table={table}
+              table="BesoinEntretien"
               id={IdNotice}
               fields={besoinsEntretien}
             />
@@ -57,23 +61,23 @@ const Notice = () => {
               <div className="InformationsSupplementaires">
                 <div className="InformationsSupplementaires-text">
                   <p className="InformationsSupplementaires-text-laber">
-                    Période de l'entretien{" "}
+                    Période de l'entretien
                   </p>
-                  <p> toutes les {notice.Periodicite} heures</p>
+                  <p>toutes les {notice.Periodicite} heures</p>
                 </div>
                 <div className="InformationsSupplementaires-text">
                   <p className="InformationsSupplementaires-text-laber">
-                    Capacité en huile{" "}
+                    Capacité en huile
                   </p>
                   <p>Il faut {notice.Capacite} litres d'huile </p>
-                  <p> Type d'huile : {notice.TypeHuile}</p>
+                  <p>Type d'huile : {notice.TypeHuile}</p>
                 </div>
                 <div className="InformationsSupplementaires-text">
                   <p className="InformationsSupplementaires-text-laber">
-                    Filtres{" "}
+                    Filtres
                   </p>
                   <p>Il faut {notice.NbFiltre} filtres</p>
-                  <p> Référence filtre : {notice.RefFiltre1}</p>
+                  <p>Référence filtre : {notice.RefFiltres?.join(" - ")}</p>
                 </div>
               </div>
             </div>
@@ -83,4 +87,5 @@ const Notice = () => {
     </div>
   );
 };
+
 export default Notice;
