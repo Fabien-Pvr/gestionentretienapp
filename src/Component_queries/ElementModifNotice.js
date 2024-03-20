@@ -4,6 +4,7 @@ import { db } from "../Firebase";
 import { useNavigate } from "react-router-dom";
 import RetourArriere from "../Component_App/RetourArriere";
 import "../CSS/ModificationElement.css";
+import Head from "../Component_App/Head";
 
 const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
   const [TypeEntretien, setTypeEntretien] = useState(
@@ -57,17 +58,22 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
     }
   };
 
-  const handeltest = () => {};
 
   return (
-    <div>
-      <form
-        onSubmit={handleFormSubmit}
-        className={isFullscreen ? "fullscreenForm" : ""}
-      >
-        <RetourArriere />
+    <div className={isFullscreen ? "fullscreenForm" : ""}>
+      <header className="Notice_header">
+          <Head />
+        </header>
+
+      <form onSubmit={handleFormSubmit}>
+        <div className="ModifNotice_RetourArriere">
+          <RetourArriere />
+          <p className="ModifNotice_Titre">
+            Modification des élements de la notice
+          </p>
+        </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <div className="FormNotice">
+        <div className="ModifNotice_FormNotice">
           <label className="LabelForm">
             <input
               type="text"
@@ -120,7 +126,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
         </div>
         <div className="PositionEnregistrer">
           <button type="submit">Enregistrer</button>
-          <button onClick={handeltest}>Test Back</button>
+          {/* <button onClick={handeltest}>Test Back</button> */}
         </div>
       </form>
     </div>

@@ -1,0 +1,56 @@
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  width: 60%;
+  height: 20%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.popup-close {
+  float: right;
+  border: none;
+  background: none;
+  color: black;
+}
+
+.Menu_Titre {
+  width: 100%;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.Menu_PositionButton {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 70%;
+  justify-content: space-around;
+}
+
+.Menu_Containerbutton {
+  padding: 0%;
+}
+
+.Menu_button {
+  background-color: #fbfff0;
+  color: #375e75;
+  border: #375e75 solid 1px;
+}
+.Menu_button_Supp {
+  background-color: #fbfff0;
+  color: #9e2525;
+  border: #9e2525 solid 1px;
+}
