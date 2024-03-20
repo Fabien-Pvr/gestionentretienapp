@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { auth, db } from "../Firebase";
 import { useNavigate } from "react-router-dom"; // Importez useNavigate
 import {
@@ -6,7 +6,7 @@ import {
   sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
-import { ref, set, onValue } from "firebase/database";
+import { ref, set } from "firebase/database";
 
 import logo from "../image/LogoP2I.svg";
 import iconprofil from "../image/icon-profil.png";
@@ -20,8 +20,8 @@ const Inscription = () => {
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("");
   const [userId, setUserId] = useState("");
-  
-  const navigate = useNavigate(); 
+
+  const navigate = useNavigate();
   const signUp = async (e) => {
     e.preventDefault();
     try {
@@ -57,8 +57,6 @@ const Inscription = () => {
       setError(error.message);
     }
   };
-
-  
 
   const HandleClickCo = () => {
     navigate("/connexion");
@@ -101,7 +99,6 @@ const Inscription = () => {
               required
             />
           </label>
-          
         </div>
         <div className="inscription-position-buttons">
           <div className="inscription-button-co">

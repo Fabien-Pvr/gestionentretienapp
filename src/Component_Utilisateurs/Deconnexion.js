@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "../Firebase"; // Ajustez le chemin selon la structure de votre projet
+import { auth } from "../Firebase"; 
 import { signOut } from "firebase/auth";
 
 const Deconnexion = () => {

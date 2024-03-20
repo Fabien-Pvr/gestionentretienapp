@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { onValue, ref } from "firebase/database";
-import { db } from "../Firebase.js";
+import React, { useState } from "react";
 import "../CSS/BesoinEntretienByID.css";
 
 const BesoinEntretienID = ({ notice }) => {
@@ -26,6 +24,5 @@ const BesoinEntretienID = ({ notice }) => {
     </div>
   );
 };
-
 
 export default BesoinEntretienID;

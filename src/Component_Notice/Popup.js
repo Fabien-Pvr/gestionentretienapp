@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../CSS/Popup.css"; // Un fichier CSS pour le style du pop-up
 
 const Popup = ({ show, onClose, children }) => {
