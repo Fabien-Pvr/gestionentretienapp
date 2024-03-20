@@ -12,7 +12,7 @@ const MenuOverlay = ({ table, id, fields }) => {
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
-
+  console.log(error);
   const handleDeleteElement = () => {
     deleteElement(table, id, setError);
     setIsPopupOpen(false); // Ferme le Popup après la suppression

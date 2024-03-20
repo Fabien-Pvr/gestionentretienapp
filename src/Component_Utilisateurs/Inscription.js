@@ -19,7 +19,7 @@ const Inscription = () => {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("");
-  const [userId, setUserId] = useState("");
+
 
   const navigate = useNavigate();
   const signUp = async (e) => {
@@ -48,7 +48,7 @@ const Inscription = () => {
           NomUser: displayName,
           StatutUser: "Salarié",
         });
-        setUserId(userCredential.user.uid);
+        
 
         navigate("/exploitation");
       }

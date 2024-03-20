@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ref, set } from "firebase/database"; // Importation de `set`
 import { db } from "../Firebase";
-import { useNavigate } from "react-router-dom";
 import RetourArriere from "../Component_App/RetourArriere";
 import "../CSS/ModificationElement.css";
 import Head from "../Component_App/Head";
@@ -17,7 +16,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
   const [RefFiltre1, setRefFiltre1] = useState(notice.RefFiltre1 || "");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();

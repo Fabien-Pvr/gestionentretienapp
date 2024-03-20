@@ -1,6 +1,5 @@
 import React from "react";
-import { auth } from "../Firebase"; 
-import { signOut } from "firebase/auth";
+import { auth } from "../Firebase";
 
 const Deconnexion = () => {
   const signOut = () => {
