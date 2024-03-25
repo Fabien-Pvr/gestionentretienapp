@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import ChoixNoticeVsEntretien from "../Component_Ajout/ChoixNoticeVsEntretien";
-import NoticeForm from "../Component_Ajout/FormNotice";
-import FormEntretien from "../Component_Ajout/FormEntretien";
-import TracteurFormIm from "../Component_Home/FormMateriel";
+import ChoixNoticeVsEntretien from "../Component/Component_Ajout/ChoixNoticeVsEntretien";
+import NoticeForm from "../Component/Component_Ajout/FormNotice";
+import FormEntretien from "../Component/Component_Ajout/FormEntretien";
+import TracteurFormIm from "../Component/Component_Home/FormMateriel";
 
 import "../CSS/Home.css";
 

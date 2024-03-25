@@ -2,9 +2,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 // import "../CSS/Historique.css";
-import BarreTitreHistorique from "../Component_Historique/BarreTitreHistorique";
+import BarreTitreHistorique from "../Component/Component_Historique/BarreTitreHistorique";
 
-import GetEntretien from "../Component_Historique/Entretien";
+import GetEntretien from "../Component/Component_Historique/Entretien";
 
 const Historique = () => {
   return (

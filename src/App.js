@@ -7,15 +7,15 @@ import {
 } from "react-router-dom";
 import "./CSS/App.css";
 
-import Connexion from "./Component_Utilisateurs/Connexion";
-import Inscription from "./Component_Utilisateurs/Inscription";
+import Connexion from "./Component/Component_Utilisateurs/Connexion";
+import Inscription from "./Component/Component_Utilisateurs/Inscription";
 import Home from "./Pages/Home";
 import Ajout from "./Pages/Ajout";
 import Historique from "./Pages/Historique";
 import Parametres from "./Pages/Parametres";
-import { useAuth } from "./Component_Utilisateurs/AuthContext";
-import Layout from "./Component_App/Layout";
-import Exploitation from "./composant_exploitation/Exploitation";
+import { useAuth } from "./Component/Component_Utilisateurs/AuthContext";
+import Layout from "./Component/Component_App/Layout";
+import Exploitation from "./Component/composant_exploitation/Exploitation";
 import Notice from "./Pages/Notice";
 
 function ProtectedRoute({ children }) {

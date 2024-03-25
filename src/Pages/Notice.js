@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../Firebase";
+import { db } from "../Services/Firebase";
 import { ref, onValue } from "firebase/database";
 import { useLocation } from "react-router-dom";
-import RetourArriere from "../Component_App/RetourArriere";
-import MenuOverlay from "../Component_Notice/ParametreNotice";
-import { RecupererModeleMat } from "../Component_queries/queries.js";
+import RetourArriere from "../Component/Component_App/RetourArriere";
+import MenuOverlay from "../Component/Component_Notice/ParametreNotice";
+import { RecupererModeleMat } from "../Component/Component_queries/queries.js";
 
 const Notice = () => {
   const [besoinsEntretien, setBesoinsEntretien] = useState([]);
