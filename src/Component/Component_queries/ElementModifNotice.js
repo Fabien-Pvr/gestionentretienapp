@@ -1,32 +1,28 @@
-import React, { useState } from "react";
-import { ref, set } from "firebase/database"; // Importation de `set`
+import React, { useState, useEffect } from "react";
+import { ref, set } from "firebase/database";
 import { db } from "../../Services/Firebase";
 import RetourArriere from "../Component_App/RetourArriere";
 import "../../CSS/ModificationElement.css";
 import Head from "../Component_App/Head";
 
 const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
-  const [TypeEntretien, setTypeEntretien] = useState(
-    notice.TypeEntretien || ""
-  );
+  const [TypeEntretien, setTypeEntretien] = useState(notice.TypeEntretien || "");
   const [Periodicite, setPeriodicite] = useState(notice.Periodicite || "");
   const [Capacite, setCapacite] = useState(notice.Capacite || "");
   const [TypeHuile, setTypeHuile] = useState(notice.TypeHuile || "");
   const [NbFiltre, setNbFiltre] = useState(notice.NbFiltre || "");
-  const [RefFiltre1, setRefFiltre1] = useState(notice.RefFiltre1 || "");
+  const [RefFiltres, setRefFiltres] = useState(notice.RefFiltres || Array(Number(notice.NbFiltre)).fill(""));
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    setRefFiltres(notice.RefFiltres || Array(Number(notice.NbFiltre)).fill(""));
+  }, [notice.RefFiltres, notice.NbFiltre]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      isNaN(Number(Periodicite)) ||
-      isNaN(Number(Capacite)) ||
-      isNaN(Number(NbFiltre))
-    ) {
-      setError(
-        "La périodicité, la capacité et le nombre de filtres doivent être des nombres."
-      );
+    if (isNaN(Number(Periodicite)) || isNaN(Number(Capacite)) || isNaN(Number(NbFiltre))) {
+      setError("La périodicité, la capacité et le nombre de filtres doivent être des nombres.");
       return;
     }
 
@@ -40,7 +36,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
         Capacite: Number(Capacite),
         TypeHuile,
         NbFiltre: Number(NbFiltre),
-        RefFiltre1,
+        RefFiltres,
       };
 
       await set(besoinEntretienRef, noticeData);
@@ -48,10 +44,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
 
       console.log("Prêt à naviguer vers /notice");
     } catch (error) {
-      console.error(
-        "Erreur lors de l'enregistrement de la notice :",
-        error.message
-      );
+      console.error("Erreur lors de l'enregistrement de la notice :", error.message);
     }
   };
 
@@ -64,9 +57,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
       <form onSubmit={handleFormSubmit}>
         <div className="ModifNotice_RetourArriere">
           <RetourArriere />
-          <p className="ModifNotice_Titre">
-            Modification des élements de la notice
-          </p>
+          <p className="ModifNotice_Titre">Modification des éléments de la notice</p>
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="ModifNotice_FormNotice">
@@ -111,18 +102,23 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
               placeholder={notice.NbFiltre}
             />
           </label>
-          <label className="LabelForm">
-            <input
-              type="text"
-              value={RefFiltre1}
-              onChange={(e) => setRefFiltre1(e.target.value)}
-              placeholder={notice.RefFiltre1}
-            />
-          </label>
+          {RefFiltres.map((refFiltre, index) => (
+            <label key={index} className="LabelForm">
+              <input
+                type="text"
+                value={refFiltre}
+                onChange={(e) => {
+                  const updatedRefs = [...RefFiltres];
+                  updatedRefs[index] = e.target.value;
+                  setRefFiltres(updatedRefs);
+                }}
+                placeholder={`Référence du filtre ${index + 1}`}
+              />
+            </label>
+          ))}
         </div>
         <div className="PositionEnregistrer">
           <button type="submit">Enregistrer</button>
-          {/* <button onClick={handeltest}>Test Back</button> */}
         </div>
       </form>
     </div>
