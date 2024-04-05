@@ -55,7 +55,7 @@ input::placeholder {
 }
 .PositionEnregistrer {
   display: flex;
-  justify-content: center; /* Centrer horizontalement */
+  justify-content: center; 
   align-items: center;
 }
 button {

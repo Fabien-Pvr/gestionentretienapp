@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import MaterielList from "../Component_Home/MaterielList";
-import TracteurFormIm from "../Component_Home/FormMateriel";
-import ChoixMaterielNouveau from "../Component_Home/ChoixMaterielNouveau";
-import VehicleDetails from "../Component_Home/VehicleDetails";
+import MaterielList from "../Component/Component_Home/MaterielList";
+import TracteurFormIm from "../Component/Component_Home/FormMateriel";
+import ChoixMaterielNouveau from "../Component/Component_Home/ChoixMaterielNouveau";
+import VehicleDetails from "../Component/Component_Home/VehicleDetails";
 import "../CSS/Home.css";
 
 

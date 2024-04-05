@@ -1,0 +1,114 @@
+.inscription-div-logo {
+  display: flex;
+  justify-content: center;
+  height: 230px;
+}
+
+.inscription-logo {
+  width: 100%;
+}
+
+.inscription-div-input {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 60px 46px 68px;
+  align-items: center; 
+  gap: 20px;
+}
+
+.inscription-label {
+  display: flex; 
+  border-bottom: 1px solid black; 
+  width: 100%;
+  margin: 20px 0px;
+}
+
+input {
+  background-color: #fbfff0;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-left: 20px; 
+}
+
+.inscription-icon {
+  height: 30px; 
+  margin-right: 7px;
+  margin-bottom: 3px;
+}
+
+.inscription-position-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-top: 5%;
+  align-items: center;
+  gap: 30px;
+}
+
+.inscription-button-co {
+  display: flex;
+  justify-content: center;
+}
+
+.button-prim {
+  width: 289px;
+  height: 43px;
+  border-radius: 19px;
+  background: #577d5f;
+}
+
+.inscription-button-insc {
+  display: flex;
+  justify-content: center;
+}
+
+.button-sec {
+  width: 289px;
+  height: 43px;
+  color: black;
+  border-radius: 19px;
+  background: #d7d7d7;
+}
+
+.InscriptionMenuDel {
+  display: flex;
+  padding: 10px 0px;
+  background-color: #fbfff0;
+  cursor: pointer;
+  gap: 20px;
+}
+
+.Inscription-selection-format {
+  padding: 2px;
+  border: none;
+  border-radius: 2px;
+  font-size: medium;
+  font-style: italic;
+  background: #fbfff0;
+  font-style: italic;
+  font-size: 15px;
+}
+
+.Inscription-option-selection {
+  font-size: 15px;
+}
+
+.form-Inscription {
+  padding-bottom: 0%;
+}
+
+.Inscription-radioInput-global {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Inscription-radioInput {
+  display: flex;
+  font-style: italic;
+  color: rgb(126, 126, 126);
+}
+.Inscription-radioInput-input {
+  width: 40px;
+}

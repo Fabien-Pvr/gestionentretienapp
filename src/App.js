@@ -1,36 +1,78 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import "./CSS/App.css";
 
-// Importez vos composants de page
+import Connexion from "./Component/Component_Utilisateurs/Connexion";
+import Inscription from "./Component/Component_Utilisateurs/Inscription";
 import Home from "./Pages/Home";
 import Ajout from "./Pages/Ajout";
 import Historique from "./Pages/Historique";
 import Parametres from "./Pages/Parametres";
-// import Entretien from "./Pages/Entretien"; // Assurez-vous d'avoir un composant pour la page Entretien
+import { useAuth } from "./Component/Component_Utilisateurs/AuthContext";
+import Layout from "./Component/Component_App/Layout";
+import Exploitation from "./Component/composant_exploitation/Exploitation";
+import Notice from "./Pages/Notice";
 
-import Footer from "./Component_App/Footer";
-import Head from "./Component_App/Head";
+function ProtectedRoute({ children }) {
+  const { currentUser } = useAuth();
+  return currentUser ? children : <Navigate to="/connexion" />;
+}
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <header className="App-header">
-          <Head />
-        </header>
-
-        <main className="ContainerInit"></main>
-
-        <Footer />
-
+      <Layout>
         <Routes>
-          <Route path="/home/*" element={<Home />} />
-          <Route path="/ajout/*" element={<Ajout />} />
-          <Route path="/historique/*" element={<Historique />} />
-          <Route path="/parametres/*" element={<Parametres />} />
+          <Route path="/connexion" element={<Connexion />} />
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/exploitation" element={<Exploitation />} />
+          <Route
+            path="/home/*"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ajout/*"
+            element={
+              <ProtectedRoute>
+                <Ajout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/historique/*"
+            element={
+              <ProtectedRoute>
+                <Historique />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/parametres/*"
+            element={
+              <ProtectedRoute>
+                <Parametres />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notice"
+            element={
+              <ProtectedRoute>
+                <Notice />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
-      </div>
+      </Layout>
     </Router>
   );
 }
