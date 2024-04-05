@@ -4,7 +4,7 @@ import "../../CSS/ChoixMaterielNouveau.css";
 import { useState } from "react";
 
 const BarreTitreHistorique = () => {
-  const [activePage, setActivePage] = useState("historique"); // Par défaut, "Matériel" est la page active
+  const [activePage, setActivePage] = useState("historique"); 
 
   const handleClick = (page) => {
     setActivePage(page);

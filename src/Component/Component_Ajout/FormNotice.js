@@ -47,12 +47,12 @@ const NoticeForm = () => {
   }, [idExp, dataExploitataion]);
 
   useEffect(() => {
-    // Assurez-vous que NbFiltre est un nombre et qu'il est positif
+
     const nbFiltreNum = parseInt(NbFiltre);
     if (!isNaN(nbFiltreNum) && nbFiltreNum > 0) {
       setRefFiltres(Array(nbFiltreNum).fill(""));
     } else {
-      setRefFiltres([]); // Réinitialisez le tableau si NbFiltre n'est pas un nombre positif
+      setRefFiltres([]); 
     }
   }, [NbFiltre]);
   
@@ -92,13 +92,13 @@ const NoticeForm = () => {
           Capacite,
           TypeHuile,
           NbFiltre,
-          RefFiltres, // Stocke toutes les références de filtres
+          RefFiltres, 
         };
 
         await set(newNoticeRef, noticeData);
 
         console.log("Notice enregistrée avec succès dans la base de données.");
-        // Réinitialisez les états ici
+     
       } else {
         setError(`Aucun véhicule trouvé pour le modèle ${modele}.`);
       }

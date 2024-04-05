@@ -1,5 +1,5 @@
 import React from "react";
-import "../../CSS/Popup.css"; // Un fichier CSS pour le style du pop-up
+import "../../CSS/Popup.css"; 
 
 const Popup = ({ show, onClose, children }) => {
   if (!show) {

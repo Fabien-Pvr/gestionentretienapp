@@ -15,7 +15,7 @@ const TracteurFormIm = () => {
   );
   const [VidangeMoteur, setVidangeMoteur] = useState("");
   const [ImageFile, setImageFile] = useState(null);
-  const [NomImage, setNomImage] = useState(""); // Utilisé pour stocker l'URL de prévisualisation
+  const [NomImage, setNomImage] = useState(""); 
   const [error, setError] = useState("");
 
   const { currentUser } = useAuth();
@@ -25,7 +25,7 @@ const TracteurFormIm = () => {
   const dataExploitataion = useGetExploitationData(idExp);
 
   useEffect(() => {
-    // Nettoie l'URL temporaire lors du démontage ou de la mise à jour de NomImage
+   
     return () => {
       if (NomImage.startsWith("blob:")) {
         URL.revokeObjectURL(NomImage);
@@ -36,9 +36,9 @@ const TracteurFormIm = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const previewUrl = URL.createObjectURL(file); // Crée un URL temporaire
+      const previewUrl = URL.createObjectURL(file); 
       setImageFile(file);
-      setNomImage(previewUrl); // Utilise l'URL temporaire pour la prévisualisation
+      setNomImage(previewUrl); 
     }
   };
 
@@ -70,7 +70,7 @@ const TracteurFormIm = () => {
         Puissance,
         MiseService,
         VidangeMoteur,
-        NomImage: ImageFile.name, // Stocke le nom de l'image pour la sauvegarde
+        NomImage: ImageFile.name, 
         IdExploitation: dataExploitataion.exploitationInfo.IdExploitation,
       };
       await set(newTracteurRef, tracteurData);
@@ -94,7 +94,7 @@ const TracteurFormIm = () => {
   return (
     <form onSubmit={handleFormSubmit}>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {/* Affiche la prévisualisation de l'image */}
+      
       {NomImage.startsWith("blob:") && (
         <div className="image-preview-position">
           <div className="image-preview-fondNoir">

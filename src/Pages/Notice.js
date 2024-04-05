@@ -9,14 +9,14 @@ import { RecupererModeleMat } from "../Component/Component_queries/queries.js";
 const Notice = () => {
   const [besoinsEntretien, setBesoinsEntretien] = useState([]);
   const [IdNotice, setIdNotice] = useState("");
-  const [modeleMat, setModeleMat] = useState(""); // État pour stocker le modèle du matériel
+  const [modeleMat, setModeleMat] = useState(""); 
   const location = useLocation();
   const materielId = location.state?.materielId;
   const noticeId = location.state?.noticeId;
 
   useEffect(() => {
     if (materielId) {
-      // Appel asynchrone pour récupérer le modèle du matériel
+
       RecupererModeleMat(materielId).then(setModeleMat).catch(console.error);
 
       const BesoinEntretienByIDRef = ref(db, "BesoinEntretien");

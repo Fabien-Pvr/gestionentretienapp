@@ -7,20 +7,19 @@ import Popup from "./Popup";
 const MenuOverlay = ({ table, id, fields }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [error, setError] = useState("");
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // Utilisé pour contrôler l'affichage du Popup
-
+  const [isPopupOpen, setIsPopupOpen] = useState(false); 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
   console.log(error);
   const handleDeleteElement = () => {
     deleteElement(table, id, setError);
-    setIsPopupOpen(false); // Ferme le Popup après la suppression
+    setIsPopupOpen(false);
   };
 
   const handleModifElement = () => {
     setShowEdit(true);
-    setIsPopupOpen(false); // Ferme le Popup lorsqu'on clique sur Modifier
+    setIsPopupOpen(false); 
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth, db } from "../../Services/Firebase";
-import { useNavigate } from "react-router-dom"; // Importez useNavigate
+import { useNavigate } from "react-router-dom"; 
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../../Services/Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom"; // Importez useNavigate
+import { useNavigate } from "react-router-dom"; 
 import "../../CSS/Connexion.css";
 import logo from "../../image/LogoP2I.svg";
 import iconMail from "../../image/icon-mail.png";
@@ -10,7 +10,7 @@ import iconLock from "../../image/icon-Lock.png";
 const Connexion = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Créez l'instance de navigate
+  const navigate = useNavigate(); 
 
   const signIn = async () => {
     try {

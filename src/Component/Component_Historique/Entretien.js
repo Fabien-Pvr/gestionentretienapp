@@ -21,7 +21,7 @@ const GetEntretien = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Assurez-vous que les données de l'exploitation sont chargées
+       
         if (dataExploitataion && dataExploitataion.exploitationInfo) {
           const GetEntretienData = await GetListeEntretien();
           console.log("GetEntretienData", GetEntretienData);
@@ -45,7 +45,7 @@ const GetEntretien = () => {
               const IdMat = GetEntretien.IdMat;
               const matData = await RecupererModeleMat(IdMat);
 
-              // Convertir la date de string à objet Date
+              
               const formattedDate = new Date(
                 GetEntretien.Entretien.Date
               ).toLocaleDateString("fr-FR");
@@ -77,7 +77,7 @@ const GetEntretien = () => {
     if (idExp) {
       fetchData();
     }
-  }, [idExp, dataExploitataion]); // Ajouter dataExploitataion dans les dépendances pour recharger les données si elles changent
+  }, [idExp, dataExploitataion]); 
 
   const handleItemClick = (id) => {
     setSelectedId((prevId) => (prevId === id ? null : id));
@@ -90,7 +90,7 @@ const GetEntretien = () => {
           <div
             className="Entretien-ContainerFrame"
             key={index}
-            onClick={() => handleItemClick(index)} // Gestion du clic pour chaque élément
+            onClick={() => handleItemClick(index)} 
           >
             <p className="ptest1">{besoin.modeleMat}</p>
             <p className="ptest2">

@@ -4,11 +4,10 @@ import { db } from "../Firebase.js";
 
 function useGetBesoinEntretienData(IdBesoinEntretien) {
   const [besoinEntretienInfo, setbesoinEntretienInfo] = useState(null);
-  console.log("testIdBesoin", IdBesoinEntretien);
-  console.log("testIdBesoin2", IdBesoinEntretien.vehicleId);
+ 
 
   useEffect(() => {
-    console.log("IdBesoin:", IdBesoinEntretien.vehicleId);
+
     const besoinEntretienRef = ref(
       db,
       `BesoinEntretien/${IdBesoinEntretien.vehicleId}`
@@ -18,14 +17,14 @@ function useGetBesoinEntretienData(IdBesoinEntretien) {
       const data = snapshot.val();
       if (data) {
         setbesoinEntretienInfo(data);
-        console.log("dataBesoin", data);
+
       }
     });
 
     return () => unsubscribe();
   }, [IdBesoinEntretien.vehicleId]);
 
-  console.log("besoinEntretienInfo", besoinEntretienInfo);
+
 
   return { besoinEntretienInfo };
 }

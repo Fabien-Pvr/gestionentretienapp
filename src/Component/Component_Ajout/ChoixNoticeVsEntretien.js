@@ -4,7 +4,7 @@ import "../../CSS/ChoixMaterielNouveau.css";
 import { useState } from "react";
 
 const ChoixMaterielNouveau = () => {
-  const [activePage, setActivePage] = useState("notice"); 
+  const [activePage, setActivePage] = useState("notice");
 
   const handleClick = (page) => {
     setActivePage(page);

@@ -4,7 +4,7 @@ import "../../CSS/ChoixMaterielNouveau.css";
 import { useState } from "react";
 
 const ChoixMaterielNouveau = () => {
-  const [activePage, setActivePage] = useState("materiel"); // Par défaut, "Matériel" est la page active
+  const [activePage, setActivePage] = useState("materiel"); 
 
   const handleClick = (page) => {
     setActivePage(page);
