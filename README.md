@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+Notice d’utilisation :
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Au travers de l’application déployée
 
-## Available Scripts
+Pour accéder à la dernière version de l’application, lancer votre moteur de recherche et tapper dans la barre de recherche:
 
-In the project directory, you can run:
+https://agricarev2.netlify.app (format conseillé : téléphone, mais tout format accéssible)
 
-### `npm start`
+Vous avez alors accès à l’application, mais il vous faudra vous connecter. Pour cela il vous suffit de le faire avec les code suivant:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+email : fabienlj.poivre@gmail.com
+mdp : testtest
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Si vous souhaitez vous inscrire, il faudra utiliser une adresse mail valide car un mail de confirmation est envoyé et il faudra vérifier votre adresse mail avant de vous connecter. Il vous faudra alors soit rejoindre une exploitation soit en créer une. Si vous souhaitez rejoindre une exploitation, je vous demande de rejoindre Exploit1 car les autres ne sont pas des exploitations de test mais de réelles exploitations.
 
-### `npm test`
+Avec le gitHub
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Vous pouvez aussi directement lancer l’application au travers du terminal de votre vsc. Ainsi pour cela il vous suffit d’aller sur le git et de cloner le dépôt. Une fois fait, je conseille d’utiliser la branche master ou V4_test_nouveau_firebase.
+Une fois VSC lancé, accéder à un terminal et faite la commande :
 
-### `npm run build`
+npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensuite une fois la commande effectuée vous pouvez lancer l’application à l’aide de : npm start.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Une fois l'application lancée, pour se connecter, se référer à la section précédente.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Avec le fichier ZIP
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Si vous souhaitez lancer le fichier ZIP, commencez par le dézipper. Puis dans VSC charger le dossier gestionentretienapp.
+Une fois le dossier lancé, ouvrez un terminal et effectuer les opérations décrites dans le paragraphe précédent.
