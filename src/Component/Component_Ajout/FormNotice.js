@@ -22,9 +22,7 @@ const NoticeForm = () => {
   const idUser = currentUser ? currentUser.uid : null;
 
   const idExp = useFindUserExploitation(idUser);
-  // console.log("test", idExp);
   const dataExploitation = useGetExploitationData(idExp);
-  // console.log("test2", dataExploitation.exploitationInfo.IdExploitation);
 
   useEffect(() => {
     const fetchModeles = async () => {

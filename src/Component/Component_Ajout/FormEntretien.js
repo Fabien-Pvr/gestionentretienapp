@@ -56,7 +56,10 @@ const FormEntretien = () => {
     }
 
     try {
-      const idMat = await RecupererIdMat(modele);
+      const IdMat = await RecupererIdMat(
+        dataExploitation.exploitationInfo.IdExploitation,
+        modele
+      );
 
       if (idMat) {
         const entretienRef = ref(db, "Entretien");
