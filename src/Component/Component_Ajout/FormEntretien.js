@@ -61,14 +61,14 @@ const FormEntretien = () => {
         modele
       );
 
-      if (idMat) {
+      if (IdMat) {
         const entretienRef = ref(db, "Entretien");
         const newEntretienRef = push(entretienRef);
 
         const entretienData = {
           IdEntretien: newEntretienRef.key,
           Date: date,
-          IdMat: idMat,
+          IdMat: IdMat,
           NbHeure: NbHeure,
           Observation: Observation,
           TypeEntretien: TypeEntretien,
