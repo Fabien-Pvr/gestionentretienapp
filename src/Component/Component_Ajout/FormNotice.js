@@ -22,15 +22,18 @@ const NoticeForm = () => {
   const idUser = currentUser ? currentUser.uid : null;
 
   const idExp = useFindUserExploitation(idUser);
-  const dataExploitataion = useGetExploitationData(idExp);
+  // console.log("test", idExp);
+  const dataExploitation = useGetExploitationData(idExp);
+  // console.log("test2", dataExploitation.exploitationInfo.IdExploitation);
 
   useEffect(() => {
     const fetchModeles = async () => {
       try {
-        if (dataExploitataion && dataExploitataion.exploitationInfo) {
+        if (dataExploitation && dataExploitation.exploitationInfo) {
           const modelesList = await GetAllModeles(
-            dataExploitataion.exploitationInfo.IdExploitation
+            dataExploitation.exploitationInfo.IdExploitation
           );
+          // console.log("vh", dataExploitation.exploitationInfo.IdExploitation);
           setModeles(modelesList);
         }
       } catch (error) {
@@ -44,18 +47,16 @@ const NoticeForm = () => {
     if (idExp) {
       fetchModeles();
     }
-  }, [idExp, dataExploitataion]);
+  }, [idExp, dataExploitation]);
 
   useEffect(() => {
-
     const nbFiltreNum = parseInt(NbFiltre);
     if (!isNaN(nbFiltreNum) && nbFiltreNum > 0) {
       setRefFiltres(Array(nbFiltreNum).fill(""));
     } else {
-      setRefFiltres([]); 
+      setRefFiltres([]);
     }
   }, [NbFiltre]);
-  
 
   const handleRefChange = (index, value) => {
     const updatedRefs = [...RefFiltres];
@@ -78,7 +79,8 @@ const NoticeForm = () => {
     }
 
     try {
-      const IdMat = await RecupererIdMat(modele);
+      const IdMat = await RecupererIdMat(dataExploitation.exploitationInfo.IdExploitation, modele);
+
 
       if (IdMat) {
         const besoinEntretienRef = ref(db, "BesoinEntretien");
@@ -92,13 +94,21 @@ const NoticeForm = () => {
           Capacite,
           TypeHuile,
           NbFiltre,
-          RefFiltres, 
+          RefFiltres,
         };
 
         await set(newNoticeRef, noticeData);
 
         console.log("Notice enregistrée avec succès dans la base de données.");
-     
+        setModeles([]);
+        setModele("");
+        setTypeEntretien("");
+        setPeriodicite("");
+        setCapacite("");
+        setTypeHuile("");
+        setNbFiltre("");
+        setRefFiltres([]);
+        setError("");
       } else {
         setError(`Aucun véhicule trouvé pour le modèle ${modele}.`);
       }
@@ -160,7 +170,6 @@ const NoticeForm = () => {
             value={Capacite}
             onChange={(e) => setCapacite(e.target.value)}
             placeholder="Capacité"
-            required
           />
         </label>
         <label className="LabelForm">
@@ -169,7 +178,6 @@ const NoticeForm = () => {
             value={TypeHuile}
             onChange={(e) => setTypeHuile(e.target.value)}
             placeholder="Type d'huile utilisée"
-            required
           />
         </label>
         <label className="LabelForm">

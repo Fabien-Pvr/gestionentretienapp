@@ -10,7 +10,7 @@ import useGetNoticeByIdMat from "../Component_queries/useNoticeDataByIdMat.js";
 const VehicleDetails = () => {
   const { vehicleId } = useParams();
   const valueMateriel = useGetMaterielData({ vehicleId });
-  const notices = useGetNoticeByIdMat(vehicleId) || []; 
+  const notices = useGetNoticeByIdMat(vehicleId) || [];
   const materielInfo = valueMateriel.materielInfo;
 
   const navigate = useNavigate();
@@ -33,19 +33,28 @@ const VehicleDetails = () => {
         {materielInfo && (
           <>
             <p>Mise en service le : {formatDate(materielInfo.MiseService)}</p>
-            <p>Première vidange moteur effectuée à : {materielInfo.VidangeMoteur} heures</p>
+            <p>
+              Première vidange moteur effectuée à : {materielInfo.VidangeMoteur}{" "}
+              heures
+            </p>
           </>
         )}
       </div>
       <div className="Titre">Notices disponible</div>
-      {notices && notices.map((item) => (
-        item && <div key={item.IdBesoinEntretien} onClick={() => HandleClickNotice(item.IdBesoinEntretien)}>
-          <BesoinEntretienID notice={item} />
-        </div>
-      ))}
+      {notices &&
+        notices.map(
+          (item) =>
+            item && (
+              <div
+                key={item.IdBesoinEntretien}
+                onClick={() => HandleClickNotice(item.IdBesoinEntretien)}
+              >
+                <BesoinEntretienID notice={item} />
+              </div>
+            )
+        )}
     </ul>
   );
 };
-
 
 export default VehicleDetails;

@@ -2,7 +2,7 @@
 import { db } from "../../Services/Firebase";
 import { ref, get } from "firebase/database";
 
-const RecupererIdMat = async (Modele) => {
+const RecupererIdMat = async (IdExploitation, Modele) => {
   try {
     const matModelRef = ref(db, "Materiel");
     const snapshot = await get(matModelRef);
@@ -12,12 +12,11 @@ const RecupererIdMat = async (Modele) => {
       const matKeys = Object.keys(materiels);
       for (const key of matKeys) {
         const matData = materiels[key];
-        console.log("blebla", matData);
-        console.log("testfinaljenaimarre", matData.IdMat);
-        if (matData.Modele === Modele) {
-          console.log("MatDataTest:", matData);
+        if (
+          matData.Modele === Modele &&
+          matData.IdExploitation === IdExploitation
+        ) {
           const IdMat = matData.IdMat;
-          console.log("modeleMat", IdMat);
           return IdMat;
         }
       }
@@ -94,13 +93,11 @@ const ListeBesoinEntretien = async () => {
   const besoinEntretienData = snapshot.val();
 
   if (besoinEntretienData) {
-
     const matDataPromises = Object.keys(besoinEntretienData).map(
       async (besoinEntretienId) => {
         const besoinEntretien = besoinEntretienData[besoinEntretienId];
         const IdMat = besoinEntretien.IdMat;
         console.log("testIdMat:", IdMat);
-
 
         console.log("prout:", besoinEntretien);
 
@@ -126,7 +123,6 @@ const GetListeEntretien = async () => {
   console.log("EntretineData", EntretienData);
 
   if (EntretienData) {
-    
     const matDataPromises = Object.keys(EntretienData).map(
       async (EntretienId) => {
         const Entretien = EntretienData[EntretienId];
@@ -178,9 +174,9 @@ const GetAllModeles = async (idExp) => {
 
     if (snapshot.exists()) {
       const modelesArray = Object.values(snapshot.val())
-     
+
         .filter((materiel) => materiel.IdExploitation === idExp)
-       
+
         .map((materiel) => materiel.Modele);
 
       return modelesArray;
