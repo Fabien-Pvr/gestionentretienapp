@@ -20,6 +20,27 @@
   padding-left: 7%;
 }
 
+.Container_Ajouter_detailVehicule_Ajouter {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 90px;
+}
+
+.button_Ajouter_detailVehicule {
+  background-color: #577d5f;
+  color: white;
+  border-color: #577d5f;
+  border: 2px solid;
+  border-radius: 50%;
+  font-size: xxx-large;
+  width: 70px;
+  height: 70px;
+}
+
 .TextInfoFrame {
   display: flex;
   flex-direction: column;
