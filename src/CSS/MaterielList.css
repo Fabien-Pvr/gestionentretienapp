@@ -27,12 +27,23 @@
   justify-content: center;
   right: 50%;
   transform: translateX(50%);
-  bottom: 90px;
+  bottom: 100px;
 }
 
 .button_Ajouter_detailVehicule {
   background-color: #577d5f;
   color: white;
+  border-color: #577d5f;
+  border: 2px solid;
+  border-radius: 50%;
+  font-size: xxx-large;
+  width: 70px;
+  height: 70px;
+}
+
+.button_Ajouter_detailVehicule_Mat {
+  background-color: #fbfff0;
+  color: #577d5f;
   border-color: #577d5f;
   border: 2px solid;
   border-radius: 50%;
