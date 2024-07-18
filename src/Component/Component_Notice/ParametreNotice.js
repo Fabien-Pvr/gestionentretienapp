@@ -3,23 +3,37 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import deleteElement from "../Component_queries/ElementDelete";
 import ElementModif from "../Component_queries/ElementModifNotice";
 import Popup from "./Popup";
+import ConfirmationPopUp from "../Component_queries/ConfirmationPopUp";
 
 const MenuOverlay = ({ table, id, fields }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [error, setError] = useState("");
-  const [isPopupOpen, setIsPopupOpen] = useState(false); 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isConfirmationPopupVisible, setIsConfirmationPopupVisible] =
+    useState(false);
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [buttonMessage, setButtonMessage] = useState("");
+  const [onConfirmAction, setOnConfirmAction] = useState(() => () => {});
+
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
+  
   console.log(error);
+
   const handleDeleteElement = () => {
-    deleteElement(table, id, setError);
-    setIsPopupOpen(false);
+    setConfirmationMessage("Supprimer la notice ?");
+    setButtonMessage("Supprimer");
+    setOnConfirmAction(() => () => {
+      deleteElement(table, id, setError);
+      setIsConfirmationPopupVisible(false);
+    });
+    setIsConfirmationPopupVisible(true);
   };
 
   const handleModifElement = () => {
     setShowEdit(true);
-    setIsPopupOpen(false); 
+    setIsPopupOpen(false);
   };
 
   return (
@@ -47,6 +61,13 @@ const MenuOverlay = ({ table, id, fields }) => {
           isFullscreen={showEdit}
         />
       )}
+      <ConfirmationPopUp
+        message={confirmationMessage}
+        buttonMessage={buttonMessage}
+        onConfirm={onConfirmAction}
+        onCancel={() => setIsConfirmationPopupVisible(false)}
+        show={isConfirmationPopupVisible}
+      />
     </div>
   );
 };

@@ -1,10 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../../CSS/ChoixMaterielNouveau.css";
-import { useState } from "react";
 
 const ChoixMaterielNouveau = () => {
-  const [activePage, setActivePage] = useState("notice");
+  const location = useLocation();
+  const initialActivePage = location.state?.activeBox || "materiel";
+  const [activePage, setActivePage] = useState(initialActivePage);
+
+  useEffect(() => {
+    setActivePage(initialActivePage);
+  }, [initialActivePage]);
 
   const handleClick = (page) => {
     setActivePage(page);

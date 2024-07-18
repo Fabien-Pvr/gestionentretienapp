@@ -19,17 +19,17 @@ const FormEntretien = () => {
   const idUser = currentUser ? currentUser.uid : null;
 
   const idExp = useFindUserExploitation(idUser);
-  const dataExploitataion = useGetExploitationData(idExp);
+  const dataExploitation = useGetExploitationData(idExp);
   useEffect(() => {
     const fetchModeles = async () => {
       try {
         if (
-          dataExploitataion &&
-          dataExploitataion.exploitationInfo &&
-          dataExploitataion.exploitationInfo.IdExploitation
+          dataExploitation &&
+          dataExploitation.exploitationInfo &&
+          dataExploitation.exploitationInfo.IdExploitation
         ) {
           const modelesList = await GetAllModeles(
-            dataExploitataion.exploitationInfo.IdExploitation
+            dataExploitation.exploitationInfo.IdExploitation
           );
 
           setModeles(modelesList);
@@ -45,7 +45,7 @@ const FormEntretien = () => {
     if (idExp) {
       fetchModeles();
     }
-  }, [idExp, dataExploitataion]);
+  }, [idExp, dataExploitation]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -56,20 +56,23 @@ const FormEntretien = () => {
     }
 
     try {
-      const idMat = await RecupererIdMat(modele);
+      const IdMat = await RecupererIdMat(
+        dataExploitation.exploitationInfo.IdExploitation,
+        modele
+      );
 
-      if (idMat) {
+      if (IdMat) {
         const entretienRef = ref(db, "Entretien");
         const newEntretienRef = push(entretienRef);
 
         const entretienData = {
           IdEntretien: newEntretienRef.key,
           Date: date,
-          IdMat: idMat,
+          IdMat: IdMat,
           NbHeure: NbHeure,
           Observation: Observation,
           TypeEntretien: TypeEntretien,
-          IdExploitation: dataExploitataion.exploitationInfo.IdExploitation,
+          IdExploitation: dataExploitation.exploitationInfo.IdExploitation,
         };
 
         await set(newEntretienRef, entretienData);

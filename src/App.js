@@ -20,8 +20,10 @@ import Notice from "./Pages/Notice";
 
 function ProtectedRoute({ children }) {
   const { currentUser } = useAuth();
+  console.log('currentUser:', currentUser); // Ajouter ceci pour vérifier l'authentification
   return currentUser ? children : <Navigate to="/connexion" />;
 }
+
 
 function App() {
   return (
