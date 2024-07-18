@@ -2,12 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../CSS/ChoixMaterielNouveau.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ChoixMaterielNouveau = () => {
-  const [activePage, setActivePage] = useState("materiel"); 
+  const [activePage, setActivePage] = useState("materiel");
+  const navigate = useNavigate();
 
   const handleClick = (page) => {
     setActivePage(page);
+  };
+  const HandleClickAjout = (activePage) => {
+    navigate(`/ajout/${activePage}`, { state: { activePage } });
   };
 
   return (
@@ -19,13 +24,9 @@ const ChoixMaterielNouveau = () => {
       >
         Matériel
       </Link>
-      {/* <Link
-        to="/home/nouveau"
-        className={activePage === "nouveau" ? "nomActive" : "nomUnactive"}
-        onClick={() => handleClick("nouveau")}
-      >
-        Nouveau
-      </Link> */}
+      <p onClick={() => HandleClickAjout(activePage)} className="nomUnactive">
+        Ajouter +
+      </p>
     </div>
   );
 };

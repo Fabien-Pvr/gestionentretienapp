@@ -6,12 +6,16 @@ import "../../CSS/ModificationElement.css";
 import Head from "../Component_App/Head";
 
 const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
-  const [TypeEntretien, setTypeEntretien] = useState(notice.TypeEntretien || "");
+  const [TypeEntretien, setTypeEntretien] = useState(
+    notice.TypeEntretien || ""
+  );
   const [Periodicite, setPeriodicite] = useState(notice.Periodicite || "");
   const [Capacite, setCapacite] = useState(notice.Capacite || "");
   const [TypeHuile, setTypeHuile] = useState(notice.TypeHuile || "");
   const [NbFiltre, setNbFiltre] = useState(notice.NbFiltre || "");
-  const [RefFiltres, setRefFiltres] = useState(notice.RefFiltres || Array(Number(notice.NbFiltre)).fill(""));
+  const [RefFiltres, setRefFiltres] = useState(
+    notice.RefFiltres || Array(Number(notice.NbFiltre)).fill("")
+  );
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -21,8 +25,14 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (isNaN(Number(Periodicite)) || isNaN(Number(Capacite)) || isNaN(Number(NbFiltre))) {
-      setError("La périodicité, la capacité et le nombre de filtres doivent être des nombres.");
+    if (
+      isNaN(Number(Periodicite)) ||
+      isNaN(Number(Capacite)) ||
+      isNaN(Number(NbFiltre))
+    ) {
+      setError(
+        "La périodicité, la capacité et le nombre de filtres doivent être des nombres."
+      );
       return;
     }
 
@@ -40,11 +50,14 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
       };
 
       await set(besoinEntretienRef, noticeData);
-      console.log("Notice enregistrée avec succès dans la base de données.");
+      alert("Notice enregistrée avec succès dans la base de données.");
 
       console.log("Prêt à naviguer vers /notice");
     } catch (error) {
-      console.error("Erreur lors de l'enregistrement de la notice :", error.message);
+      console.error(
+        "Erreur lors de l'enregistrement de la notice :",
+        error.message
+      );
     }
   };
 
@@ -57,7 +70,9 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
       <form onSubmit={handleFormSubmit}>
         <div className="ModifNotice_RetourArriere">
           <RetourArriere />
-          <p className="ModifNotice_Titre">Modification des éléments de la notice</p>
+          <p className="ModifNotice_Titre">
+            Modification des éléments de la notice
+          </p>
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="ModifNotice_FormNotice">
@@ -66,7 +81,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
               type="text"
               value={TypeEntretien}
               onChange={(e) => setTypeEntretien(e.target.value)}
-              placeholder={notice.TypeEntretien}
+              placeholder={`Type d'entretien : ${notice.TypeEntretien}`}
             />
           </label>
 
@@ -75,7 +90,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
               type="number"
               value={Periodicite}
               onChange={(e) => setPeriodicite(e.target.value)}
-              placeholder={notice.Periodicite}
+              placeholder={`Périodicité : ${notice.Periodicite}`}
             />
           </label>
           <label className="LabelForm">
@@ -83,7 +98,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
               type="number"
               value={Capacite}
               onChange={(e) => setCapacite(e.target.value)}
-              placeholder={notice.Capacite}
+              placeholder={`Capacité : ${notice.Capacite}`}
             />
           </label>
           <label className="LabelForm">
@@ -91,7 +106,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
               type="text"
               value={TypeHuile}
               onChange={(e) => setTypeHuile(e.target.value)}
-              placeholder={notice.TypeHuile}
+              placeholder={`Type d'huile : ${notice.TypeHuile}`}
             />
           </label>
           <label className="LabelForm">
@@ -99,7 +114,7 @@ const ElementModif = ({ idNotice, notice = {}, isFullscreen }) => {
               type="number"
               value={NbFiltre}
               onChange={(e) => setNbFiltre(e.target.value)}
-              placeholder={notice.NbFiltre}
+              placeholder={`Nombre de filtres : ${notice.NbFiltre}`}
             />
           </label>
           {RefFiltres.map((refFiltre, index) => (

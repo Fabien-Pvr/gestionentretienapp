@@ -7,12 +7,15 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation.js";
 import useGetExploitationData from "../Component_queries/UseGetexploitationData.js";
+// import { useNavigate } from "react-router-dom";
 
 const MaterielList = () => {
   const [Materiel, setMateriel] = useState([]);
   const { currentUser } = useAuth();
   const idUser = currentUser ? currentUser.uid : null;
   console.log("iduser", idUser);
+  // const navigate = useNavigate();
+  // const activeBox = "materiel";
 
   const idExp = useFindUserExploitation(idUser);
   console.log("idExp", idExp);
@@ -43,6 +46,10 @@ const MaterielList = () => {
     }
   }, [idExp, dataExploitataion.exploitationInfo]);
 
+  // const HandleClickAjout = (activeBox) => {
+  //   navigate(`/ajout/${activeBox}`, { state: { activeBox } });
+  // };
+
   return (
     <div>
       <ul className="containerAll">
@@ -66,6 +73,14 @@ const MaterielList = () => {
           </BackgroundImageComponent>
         ))}
       </ul>
+      {/* <div className="Container_Ajouter_detailVehicule_Ajouter">
+        <button
+          onClick={() => HandleClickAjout(activeBox)}
+          className="button_Ajouter_detailVehicule_Mat"
+        >
+          +
+        </button>
+      </div> */}
     </div>
   );
 };
