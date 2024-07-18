@@ -7,19 +7,20 @@ import BesoinEntretienID from "./BesoinEntretienByIDMat.js";
 import useGetNoticeByIdMat from "../Component_queries/useNoticeDataByIdMat.js";
 import useGetEntretienByIdMat from "../Component_queries/useGetEntretienByIdMat.js";
 import EntretienByIdMat from "./EntretienByIdMat.js";
+// import { act } from "react";
 
 const ChoixNoticesEntretiens = ({ activeBox, handleClick }) => {
   return (
     <div className="barreChoix">
       <div
-        className={activeBox === "Notices" ? "nomActive" : "nomUnactive"}
-        onClick={() => handleClick("Notices")}
+        className={activeBox === "notice" ? "nomActive" : "nomUnactive"}
+        onClick={() => handleClick("notice")}
       >
         Notices
       </div>
       <div
-        className={activeBox === "Entretiens" ? "nomActive" : "nomUnactive"}
-        onClick={() => handleClick("Entretiens")}
+        className={activeBox === "entretien" ? "nomActive" : "nomUnactive"}
+        onClick={() => handleClick("entretien")}
       >
         Entretiens
       </div>
@@ -35,7 +36,7 @@ const VehicleDetails = () => {
 
   const materielInfo = valueMateriel.materielInfo;
 
-  const [activeBox, setActiveBox] = useState("Notices");
+  const [activeBox, setActiveBox] = useState("notice");
 
   const navigate = useNavigate();
 
@@ -53,6 +54,11 @@ const VehicleDetails = () => {
       state: { materielId: vehicleId, noticeId: IdBesoinEntretien },
     });
   };
+
+  const HandleClickAjout = (activeBox) => {
+    navigate(`/ajout/${activeBox}`, { state: { activeBox } });
+  };
+  
 
   return (
     <ul className="containerAll">
@@ -74,9 +80,15 @@ const VehicleDetails = () => {
           handleClick={handleClick}
         />
         <div className="Container_Ajouter_detailVehicule_Ajouter">
-          <button className="button_Ajouter_detailVehicule">+</button></div>
+          <button
+            onClick={() => HandleClickAjout(activeBox)}
+            className="button_Ajouter_detailVehicule"
+          >
+            +
+          </button>
+        </div>
       </div>
-      {activeBox === "Notices" &&
+      {activeBox === "notice" &&
         notices.map(
           (item) =>
             item && (
@@ -88,13 +100,11 @@ const VehicleDetails = () => {
               </div>
             )
         )}
-      {activeBox === "Entretiens" &&
+      {activeBox === "entretien" &&
         entretiens.map(
           (item) =>
             item && (
-              <div
-                key={item.idEntretien}
-              >
+              <div key={item.idEntretien}>
                 <EntretienByIdMat entretien={item} />
               </div>
             )

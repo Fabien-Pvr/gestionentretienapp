@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../../CSS/Navbar.css";
 
 // Importation des logos
@@ -9,18 +9,35 @@ import logo3 from "../../image/VectoriconHistorique.svg";
 import logo4 from "../../image/VectoriconSetting.svg";
 
 const Navbar = () => {
-  const [activeNavItem, setActiveNavItem] = useState("Matériel");
+  const location = useLocation();
+  const [activeNavItem, setActiveNavItem] = useState("");
 
   // Configuration des éléments de navigation
   const navItems = [
     { name: "Matériel", path: "/home/materiel", icon: logo1 },
-    { name: "Ajout", path: "/ajout/notice", icon: logo2 },
-    { name: "Historique", path: "/historique/historique", icon: logo3 },
+    { name: "Ajout", path: "/ajout/materiel", icon: logo2 },
+    { name: "Historique", path: "/historique", icon: logo3 },
     { name: "Paramètres", path: "/parametres", icon: logo4 },
   ];
 
+  // Fonction pour trouver l'élément de navigation actif en fonction de l'URL actuelle
+  useEffect(() => {
+    const currentPath = location.pathname;
+    let activeItem = navItems.find((item) => currentPath.startsWith(item.path));
+    if (!activeItem) {
+      if (currentPath.includes("/ajout/notice")) {
+        activeItem = navItems.find((item) => item.name === "Ajout");
+      } else if (currentPath.includes("/ajout/entretien")) {
+        activeItem = navItems.find((item) => item.name === "Ajout");
+      }
+    }
+    if (activeItem) {
+      setActiveNavItem(activeItem.name);
+    }
+  }, [location]);
+
   const handleNavItemClick = (item) => {
-    setActiveNavItem(item);
+    setActiveNavItem(item.name);
   };
 
   return (
@@ -33,7 +50,7 @@ const Navbar = () => {
                 ? "navbar-frame-active"
                 : "navbar-frame"
             }
-            onClick={() => handleNavItemClick(item.name)}
+            onClick={() => handleNavItemClick(item)}
           >
             <div className="frameIcons">
               <img
