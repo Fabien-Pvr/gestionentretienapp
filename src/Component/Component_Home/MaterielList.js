@@ -15,7 +15,7 @@ const MaterielList = () => {
   const idUser = currentUser ? currentUser.uid : null;
   console.log("iduser", idUser);
   const navigate = useNavigate();
-  const activeBox = "materiel";
+  // const activeBox = "materiel";
 
   const idExp = useFindUserExploitation(idUser);
   console.log("idExp", idExp);
@@ -46,9 +46,9 @@ const MaterielList = () => {
     }
   }, [idExp, dataExploitataion.exploitationInfo]);
 
-  const HandleClickAjout = (activeBox) => {
-    navigate(`/ajout/${activeBox}`, { state: { activeBox } });
-  };
+  // const HandleClickAjout = (activeBox) => {
+  //   navigate(`/ajout/${activeBox}`, { state: { activeBox } });
+  // };
 
   return (
     <div>

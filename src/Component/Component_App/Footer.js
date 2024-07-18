@@ -34,7 +34,7 @@ const Navbar = () => {
     if (activeItem) {
       setActiveNavItem(activeItem.name);
     }
-  }, [location]);
+  }, [location, navItems]);
 
   const handleNavItemClick = (item) => {
     setActiveNavItem(item.name);

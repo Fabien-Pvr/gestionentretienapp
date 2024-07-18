@@ -4,7 +4,6 @@ import { RecupererModeleMat } from "../Component_queries/queries";
 
 const EntretienByIdMat = ({ entretien }) => {
   const [selectedEntretienId, setSelectedEntretienId] = useState(null);
-  const [modeleMat, setModeleMat] = useState("");
 
   useEffect(() => {
     const fetchModeleMat = async () => {

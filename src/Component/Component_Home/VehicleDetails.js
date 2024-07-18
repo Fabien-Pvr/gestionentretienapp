@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../CSS/MaterielList.css";
 import useGetMaterielData from "./UseGetMaterielData.js";
@@ -58,7 +58,6 @@ const VehicleDetails = () => {
   const HandleClickAjout = (activeBox) => {
     navigate(`/ajout/${activeBox}`, { state: { activeBox } });
   };
-  
 
   return (
     <ul className="containerAll">
