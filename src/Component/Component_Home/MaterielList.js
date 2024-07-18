@@ -14,7 +14,7 @@ const MaterielList = () => {
   const { currentUser } = useAuth();
   const idUser = currentUser ? currentUser.uid : null;
   console.log("iduser", idUser);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const activeBox = "materiel";
 
   const idExp = useFindUserExploitation(idUser);

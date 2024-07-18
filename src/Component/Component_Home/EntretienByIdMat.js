@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../CSS/Entretien.css";
 // import { RecupererModeleMat } from "../Component_queries/queries";
 
