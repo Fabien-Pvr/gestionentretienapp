@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Entretien.css";
-import { RecupererModeleMat } from "../Component_queries/queries";
+// import { RecupererModeleMat } from "../Component_queries/queries";
 
 const EntretienByIdMat = ({ entretien }) => {
   const [selectedEntretienId, setSelectedEntretienId] = useState(null);
 
-  useEffect(() => {
-    const fetchModeleMat = async () => {
-      const modele = await RecupererModeleMat(entretien.IdMat);
-      setModeleMat(modele);
-    };
+  // useEffect(() => {
+  //   const fetchModeleMat = async () => {
+  //     const modele = await RecupererModeleMat(entretien.IdMat);
+  //     setModeleMat(modele);
+  //   };
 
-    fetchModeleMat();
-  }, [entretien.IdMat]);
+  //   fetchModeleMat();
+  // }, [entretien.IdMat]);
 
   const toggleEntretien = (id) => {
     setSelectedEntretienId((prevId) => (prevId === id ? null : id));
