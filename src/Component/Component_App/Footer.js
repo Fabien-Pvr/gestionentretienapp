@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../../CSS/Navbar.css";
 
@@ -13,12 +13,12 @@ const Navbar = () => {
   const [activeNavItem, setActiveNavItem] = useState("");
 
   // Configuration des éléments de navigation
-  const navItems = [
+  const navItems = useMemo(() => [
     { name: "Matériel", path: "/home/materiel", icon: logo1 },
     { name: "Ajout", path: "/ajout/materiel", icon: logo2 },
     { name: "Historique", path: "/historique", icon: logo3 },
     { name: "Paramètres", path: "/parametres", icon: logo4 },
-  ];
+  ], []); // Le tableau vide comme dépendance indique que navItems ne dépend d'aucune autre variable
 
   // Fonction pour trouver l'élément de navigation actif en fonction de l'URL actuelle
   useEffect(() => {

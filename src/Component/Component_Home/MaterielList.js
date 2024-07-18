@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../Component_Utilisateurs/AuthContext.js";
 import useFindUserExploitation from "../composant_exploitation/UseFindUserExploitation.js";
 import useGetExploitationData from "../Component_queries/UseGetexploitationData.js";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const MaterielList = () => {
   const [Materiel, setMateriel] = useState([]);
